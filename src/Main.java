@@ -39,7 +39,6 @@ public class Main {
                         }
                     } catch (InputMismatchException exception) {
                         System.out.println("Ошибка ввода, нужно вводить только числа (целочисленные)");
-
                     }
                 }
             }
