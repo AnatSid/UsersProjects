@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
 
 public class test {
     public static void main(String[] args) {
@@ -20,8 +17,8 @@ public class test {
             System.out.println(user);
         }
 
-        System.out.println(usersBook.getUserForId(1));
-        System.out.println(usersBook.getUserForId(4));
+        System.out.println(usersBook.getUserById(1));
+        System.out.println(usersBook.getUserById(4));
 
 
 
