@@ -17,13 +17,11 @@ public class UsersBook {
         return userList;
     }
 
-    public User getUserForId (Integer userId) {
+    public User getUserById(Integer userId) {
         if (userId != null && users.containsKey(userId)) {
             return users.get(userId);
-        } else {
-            System.out.println("Пользователь не найден");
-           return null;
         }
+        return null;
     }
 
 }

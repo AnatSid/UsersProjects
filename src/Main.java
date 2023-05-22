@@ -32,7 +32,7 @@ public class Main {
                         // уточнить про обработку сканнером не до конца, после nextInt ( оставался в конце пробел)
                         // который мешал следующему циклу
                         if (inputId > 0) {
-                            usersBook.getUserForId(inputId);
+                            usersBook.getUserById(inputId);
                             break;
                         } else {
                             System.out.println("Вы ввели отрицательное число. Попробуйте ещё раз");
