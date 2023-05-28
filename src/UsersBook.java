@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UsersBook {
     private Map <Integer, User> users = new HashMap<>();
@@ -10,11 +7,7 @@ public class UsersBook {
     }
 
     public List<User> getAllUsers() {
-        List <User> userList = new ArrayList<>();
-        for (Integer key : users.keySet()) {
-            userList.add(users.get(key));
-        }
-        return userList;
+        return new ArrayList<>(users.values());
     }
 
     public User getUserById(Integer userId) {
