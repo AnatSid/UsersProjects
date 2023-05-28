@@ -16,7 +16,7 @@ public class Main {
             String inputCommand = scanner.nextLine();
 
             if (inputCommand.equals("getAllUsers")) {
-                usersBook.getAllUsers();
+                usersBook.findAll();
                 break;
             }
 
