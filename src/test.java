@@ -10,8 +10,7 @@ public class test {
         usersBook.addUser(user1);
         usersBook.addUser(user2);
 
-        ArrayList<User> users = new ArrayList<>();
-        users.addAll(usersBook.getAllUsers());
+        ArrayList<User> users = new ArrayList<>(usersBook.findAll());
 
         for (User user:users) {
             System.out.println(user);

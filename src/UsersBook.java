@@ -1,12 +1,12 @@
 import java.util.*;
 
 public class UsersBook {
-    private Map <Integer, User> users = new HashMap<>();
+    private final Map <Integer, User> users = new HashMap<>();
     public void addUser(User user) {
         users.put(user.getId(), user);
     }
 
-    public List<User> getAllUsers() {
+    public List<User> findAll() {
         return new ArrayList<>(users.values());
     }
 
