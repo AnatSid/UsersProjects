@@ -7,6 +7,7 @@ public class Main {
 
         UsersBook usersBook = new UsersBook();
         Scanner scanner = new Scanner(System.in);
+//      boolean saveToDisk = true;
 
         while (true) {
             System.out.println("Чтобы получить данные всех пользователей, введите команду => 'getAllUsers'");
@@ -15,53 +16,52 @@ public class Main {
 
             String inputCommand = scanner.nextLine();
 
-            if (inputCommand.equals("getAllUsers")) {
-                usersBook.findAll();
-                break;
+            if ("getAllUsers".equals(inputCommand)) {
+                for (User user : usersBook.findAll()) {
+                    System.out.println(user);
+                }
+                continue;
             }
 
-            if (inputCommand.equals("getUserForId")) {
+            if ("getUserForId".equals(inputCommand)) {
+                int id;
                 while (true) {
                     System.out.println("Введите id пользователя: ");
                     Scanner scannerId = new Scanner(System.in);
-                    // если не создавать новый сканнер ещё раз,то после возникновение исключение в блок catch...
-                    // ... начинался бесконечный цикл вывода
                     try {
                         int inputId = scannerId.nextInt();
                         scannerId.nextLine();
-                        // уточнить про обработку сканнером не до конца, после nextInt ( оставался в конце пробел)
-                        // который мешал следующему циклу
-                        if (inputId > 0) {
-                            usersBook.getUserById(inputId);
-                            break;
-                        } else {
-                            System.out.println("Вы ввели отрицательное число. Попробуйте ещё раз");
-                        }
+                        id = inputId;
+                        break;
                     } catch (InputMismatchException exception) {
                         System.out.println("Ошибка ввода, нужно вводить только числа (целочисленные)");
                     }
                 }
+                System.out.println("Пользователь с id:" + id + " -> " +
+                        usersBook.getUserById(id));
+
             }
 
-            if (inputCommand.equals("add")) {
-                while (true) {
-                    System.out.println("Введите имя: ");
-                    String name = scanner.nextLine();
+            if ("add".equals(inputCommand)) {
+                System.out.println("Введите имя: ");
+                String name = scanner.nextLine();
 
-                    System.out.println("Введите фамилию:");
-                    String surName = scanner.nextLine();
+                System.out.println("Введите фамилию:");
+                String surName = scanner.nextLine();
 
-                    System.out.println("Введите возраст:");
-                    int age = scanner.nextInt();
-                    scanner.nextLine();
+                System.out.println("Введите возраст:");
+                int age = scanner.nextInt();
+                scanner.nextLine();
 
-                    User user = new User(name, surName, age);
-                    usersBook.addUser(user);
-                    System.out.println("Новый пользователь создан. Ваш id: " + user.getId());
-                    System.out.println("_________________________");
-                    break;
-                }
+                User user = new User(name, surName, age);
+                usersBook.addUser(user);
+
+                System.out.println("Новый пользователь создан. Ваш id: " + user.getId());
+                System.out.println("_________________________");
+
             }
         }
     }
 }
+
+
