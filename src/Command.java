@@ -1,3 +1,3 @@
 public interface Command {
-    void exucute (UsersBook usersBook);
+    void exucute ();
 }
