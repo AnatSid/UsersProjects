@@ -2,15 +2,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandInfoList {
-    private List<String> commandInfoList;
-    private String addCommand = "Чтобы добавить нового пользователя, введи команду => 'add'";
-    private String getAllUsers = "Чтобы получить данные всех пользователей, введите команду => 'getAllUsers'";
-    private String getUserForId = "Чтобы получить данные пользователя по ID , введите команду => 'getUserForId'";
 
     public List <String> initialization(){
-        commandInfoList = new ArrayList<>();
+        List<String> commandInfoList = new ArrayList<>();
+
+        String addCommand = "If you want to add a new user, enter the command => 'add'";
         commandInfoList.add(addCommand);
+
+        String getAllUsers = "If you want to get the data of all users, enter the command => 'getAllUsers'";
         commandInfoList.add(getAllUsers);
+
+        String getUserForId = "If you want to get user data by ID , enter the command => 'getUserForId'";
         commandInfoList.add(getUserForId);
         return commandInfoList;
     }
