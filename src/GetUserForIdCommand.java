@@ -2,12 +2,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GetUserForIdCommand implements Command {
-    private UsersBook usersBook;
-    private int id;
-
     @Override
     public void exucute(UsersBook usersBook) {
-        this.usersBook = usersBook;
+        int id;
         while (true) {
             System.out.println("Введите id пользователя: ");
             Scanner scannerId = new Scanner(System.in);
