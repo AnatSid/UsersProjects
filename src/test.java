@@ -1,28 +1,36 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class test {
     public static void main(String[] args) {
 
         UsersBook usersBook = new UsersBook();
-        User user1 = new User("dsfsd","fdsfsf",25);
-        User user2 = new User("dsfsd","fdsfsf",4);
+        Scanner scanner = new Scanner(System.in);
+        CommandInfoList commandInfoList = new CommandInfoList();
 
-        usersBook.addUser(user1);
-        usersBook.addUser(user2);
+        AddCommand addCommand = new AddCommand();
+        GetAllUsersCommand getAllUsersCommand = new GetAllUsersCommand();
+        GetUserForIdCommand getUserForIdCommand = new GetUserForIdCommand();
 
-        ArrayList<User> users = new ArrayList<>(usersBook.findAll());
+        Context context = new Context();
 
-        for (User user:users) {
-            System.out.println(user);
+        while (true) {
+            System.out.println();
+            commandInfoList.printCommandInfoList(new ArrayList<>(commandInfoList.initialization()));
+            String inputCommand = scanner.nextLine();
+            if ("add".equals(inputCommand)) {
+                context.setCommand(addCommand);
+                context.exucuteCommand(usersBook);
+            }
+            if ("getAllUsers".equals(inputCommand)) {
+                context.setCommand(getAllUsersCommand);
+                context.exucuteCommand(usersBook);
+            }
+            if ("getUserForId".equals(inputCommand)) {
+                context.setCommand(getUserForIdCommand);
+                context.exucuteCommand(usersBook);
+            }
         }
-
-        System.out.println(usersBook.getUserById(1));
-        System.out.println(usersBook.getUserById(4));
-
-
-
     }
-
-
 }
 

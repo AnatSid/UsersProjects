@@ -17,4 +17,10 @@ public class UsersBook {
         return null;
     }
 
+//    public void deleteUserById(Integer userId){
+//        if (userId != null && users.containsKey(userId)) {
+//            users.remove(userId);
+//        }
+//    }
+
 }
