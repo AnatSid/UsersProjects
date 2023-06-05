@@ -2,14 +2,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GetUserForIdCommand implements Command {
-    private UsersBook usersBook;
+    private final UsersBook usersBook;
 
     public GetUserForIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
     }
 
     @Override
-    public void exucute() {
+    public void execute() {
         int id;
         while (true) {
             System.out.println("Введите id пользователя: ");
@@ -25,8 +25,10 @@ public class GetUserForIdCommand implements Command {
         }
         if(usersBook.getUserById(id)!=null) {
             System.out.println("Пользователь с id: " + id + " -> " + usersBook.getUserById(id));
+            System.out.println("________________________________________________________________");
         }else {
             System.out.println("Пользователь с id: " + id + " не найден");
+            System.out.println("_________________________________________________________________");
         }
     }
 }

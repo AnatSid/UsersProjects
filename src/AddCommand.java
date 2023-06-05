@@ -1,9 +1,14 @@
 import java.util.Scanner;
 
 public class AddCommand implements Command {
+    private final UsersBook usersBook;
+
+    public AddCommand(UsersBook usersBook) {
+        this.usersBook = usersBook;
+    }
 
     @Override
-    public void exucute( UsersBook usersBook) {
+    public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите имя: ");
         String name = scanner.nextLine();

@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Map;
 public class Commands {
     private final HashMap<String,Command> commands;
     private static final String ADD = "add";
@@ -13,14 +12,10 @@ public class Commands {
         commands.put(GET_USER_FOR_ID,new GetUserForIdCommand(usersBook));
     }
 
-    public Map<String,Command> initialization(){
-        return commands;
-    }
-
-    public void getСommand(String inputCommand){
+    public void getCommand(String inputCommand){
         for (String command : commands.keySet()) {
             if (command.equals(inputCommand)) {
-                commands.get(command).exucute();
+                commands.get(command).execute();
             }
         }
     }

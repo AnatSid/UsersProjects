@@ -1,3 +1,3 @@
 public interface Command {
-    void exucute ();
+    void execute();
 }

@@ -8,15 +8,12 @@ public class Main {
         UsersBook usersBook = new UsersBook();
         CommandInfoList commandInfoList = new CommandInfoList();
         Commands commands = new Commands(usersBook);
-
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println();
             commandInfoList.printCommandInfoList(new ArrayList<>(commandInfoList.initialization()));
-
             String inputCommand = scanner.nextLine();
-            commands.getСommand(inputCommand);
+            commands.getCommand(inputCommand);
         }
     }
 }
