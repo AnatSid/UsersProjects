@@ -1,36 +1,20 @@
-
 import java.util.HashMap;
 import java.util.Map;
 public class CommandList {
-    HashMap<String,Command> testCommand;
-    private String add = "add";
-    private String getAllUsers = "getAllUsers";
-    private String getUserForId = "getUserForId";
-
-    AddCommand addCommand = new AddCommand();
-    GetAllUsersCommand getAllUsersCommand = new GetAllUsersCommand();
-    GetUserForIdCommand getUserForIdCommand = new GetUserForIdCommand();
+    private final HashMap<String,Command> commandList;
+    private static final String ADD = "add";
+    private static final String GET_ALL_USERS = "getAllUsers";
+    private static final String GET_USER_FOR_ID = "getUserForId";
 
     public CommandList() {
-        testCommand = new HashMap<>();
-        testCommand.put(add,addCommand);
-        testCommand.put(getAllUsers,getAllUsersCommand);
-        testCommand.put(getUserForId,getUserForIdCommand);;
+        commandList = new HashMap<>();
+        commandList.put(ADD,new AddCommand());
+        commandList.put(GET_ALL_USERS,new GetAllUsersCommand());
+        commandList.put(GET_USER_FOR_ID,new GetUserForIdCommand());
     }
 
     public Map<String,Command> initilization(){
-        return testCommand;
+        return commandList;
     }
 
-//    public CommandList (AddCommand addCommand, GetAllUsersCommand getAllUsersCommand, GetUserForIdCommand getUserForIdCommand) {
-//
-//        testCommand = new HashMap<>();
-//        this.addCommand = addCommand;
-//        this.getAllUsersCommand = getAllUsersCommand;
-//        this.getUserForIdCommand = getUserForIdCommand;
-//        testCommand.put(add,addCommand);
-//        testCommand.put(getAllUsers,getAllUsersCommand);
-//        testCommand.put(getUserForId,getUserForIdCommand);;
-//
-//    }
 }
