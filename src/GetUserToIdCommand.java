@@ -1,11 +1,11 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class GetUserForIdCommand implements Command {
+public class GetUserToIdCommand implements Command {
     private final UsersBook usersBook;
     private final String SEPORATOR = "____________________________________________________________________________";
 
-    public GetUserForIdCommand(UsersBook usersBook) {
+    public GetUserToIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
     }
 
