@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class AddCommand implements Command {
     private final UsersBook usersBook;
+    private final String SEPORATOR = "____________________________________________________________________________";
 
     public AddCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
@@ -20,9 +21,9 @@ public class AddCommand implements Command {
         int age = scanner.nextInt();
         scanner.nextLine();
 
-        User user = new User(name,surName,age);
+        User user = new User(name, surName, age);
         usersBook.addUser(user);
         System.out.println("Новый пользователь создан\n" + user + "\nID пользователя: " + user.getId());
-        System.out.println("____________________________________________________________________________");
+        System.out.println(SEPORATOR);
     }
 }

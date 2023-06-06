@@ -1,5 +1,6 @@
 public class GetAllUsersCommand implements Command {
     private final UsersBook usersBook;
+    private final String SEPORATOR = "____________________________________________________________________________";
 
     public GetAllUsersCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
@@ -8,6 +9,6 @@ public class GetAllUsersCommand implements Command {
     @Override
     public void execute() {
         usersBook.findAll().forEach(System.out::println);
-        System.out.println("_________________________________________________________________");
+        System.out.println(SEPORATOR);
     }
 }
