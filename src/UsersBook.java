@@ -1,7 +1,8 @@
 import java.util.*;
 
 public class UsersBook {
-    private final Map <Integer, User> users = new HashMap<>();
+    private final Map<Integer, User> users = new HashMap<>();
+
     public void addUser(User user) {
         users.put(user.getId(), user);
     }
@@ -16,11 +17,4 @@ public class UsersBook {
         }
         return null;
     }
-
-//    public void deleteUserById(Integer userId){
-//        if (userId != null && users.containsKey(userId)) {
-//            users.remove(userId);
-//        }
-//    }
-
 }
