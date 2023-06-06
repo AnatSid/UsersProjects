@@ -15,13 +15,7 @@ public class Commands {
 
     public void executeCommand(String inputCommand) {
         if (commands.containsKey(inputCommand)) {
-
-            for (String command : commands.keySet()) {
-                if (command.equals(inputCommand)) {
-                    commands.get(command).execute();
-                }
-            }
-
+            commands.get(inputCommand).execute();
         } else {
             System.out.println("Incorrect commands");
         }
