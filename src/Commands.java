@@ -12,7 +12,7 @@ public class Commands {
         commands.put(GET_USER_FOR_ID,new GetUserForIdCommand(usersBook));
     }
 
-    public void getCommand(String inputCommand){
+    public void executeCommand (String inputCommand){
         for (String command : commands.keySet()) {
             if (command.equals(inputCommand)) {
                 commands.get(command).execute();
