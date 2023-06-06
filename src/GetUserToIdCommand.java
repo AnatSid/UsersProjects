@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class GetUserToIdCommand implements Command {
     private final UsersBook usersBook;
-    private final String SEPORATOR = "____________________________________________________________________________";
+    private final String SEPARATOR = "____________________________________________________________________________";
 
     public GetUserToIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
@@ -29,7 +29,7 @@ public class GetUserToIdCommand implements Command {
             System.out.println("________________________________________________________________");
         }else {
             System.out.println("Пользователь с id: " + id + " не найден");
-            System.out.println(SEPORATOR);
+            System.out.println(SEPARATOR);
         }
     }
 }

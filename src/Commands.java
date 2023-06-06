@@ -1,24 +1,29 @@
 import java.util.HashMap;
+
 public class Commands {
-    private final HashMap<String,Command> commands;
+    private final HashMap<String, Command> commands;
     private static final String ADD = "add";
     private static final String GET_ALL_USERS = "getAllUsers";
-    private static final String GET_USER_FOR_ID = "getUserForId";
+    private static final String GET_USER_TO_ID = "getUserForId";
 
     public Commands(UsersBook usersBook) {
         commands = new HashMap<>();
-        commands.put(ADD,new AddCommand(usersBook));
-        commands.put(GET_ALL_USERS,new GetAllUsersCommand(usersBook));
-        commands.put(GET_USER_FOR_ID,new GetUserToIdCommand(usersBook));
+        commands.put(ADD, new AddCommand(usersBook));
+        commands.put(GET_ALL_USERS, new GetAllUsersCommand(usersBook));
+        commands.put(GET_USER_TO_ID, new GetUserToIdCommand(usersBook));
     }
 
-    public void executeCommand (String inputCommand){
-        for (String command : commands.keySet()) {
-            if (command.equals(inputCommand)) {
-                commands.get(command).execute();
-            }else {
-                System.out.println("Incorrect command");
+    public void executeCommand(String inputCommand) {
+        if (commands.containsKey(inputCommand)) {
+
+            for (String command : commands.keySet()) {
+                if (command.equals(inputCommand)) {
+                    commands.get(command).execute();
+                }
             }
+
+        } else {
+            System.out.println("Incorrect commands");
         }
     }
 
