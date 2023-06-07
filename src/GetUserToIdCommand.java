@@ -11,24 +11,21 @@ public class GetUserToIdCommand implements Command {
     @Override
     public void execute() {
         int id;
-        while (true) {
             System.out.println("Введите id пользователя: ");
-            Scanner scannerId = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
             try {
-                int inputId = scannerId.nextInt();
-                scannerId.nextLine();
-                id = inputId;
-                break;
+                id = scanner.nextInt();
             } catch (InputMismatchException exception) {
                 System.out.println("Ошибка ввода, нужно вводить только числа (целочисленные)");
+                System.out.println(SEPARATOR);
+                return;
             }
-        }
+        
         if (usersBook.getUserById(id) != null) {
             System.out.println("Пользователь с id: " + id + " -> " + usersBook.getUserById(id));
-            System.out.println("________________________________________________________________");
         } else {
             System.out.println("Пользователь с id: " + id + " не найден");
-            System.out.println(SEPARATOR);
         }
+        System.out.println(SEPARATOR);
     }
 }
