@@ -2,9 +2,16 @@ import java.util.Scanner;
 
 public class AddCommand implements Command {
     private final UsersBook usersBook;
+    private final String info = "If you want to add a new user, enter the command => 'add'";
 
     public AddCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return info;
     }
 
     @Override

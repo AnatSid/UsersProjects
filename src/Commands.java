@@ -1,4 +1,6 @@
+
 import java.util.HashMap;
+
 
 public class Commands {
     private final HashMap<String, Command> commands;
@@ -19,14 +21,5 @@ public class Commands {
         } else {
             System.out.println("Incorrect commands");
         }
-    }
-
-    @Override
-    public String toString() {
-        return """
-                If you want to add a new user, enter the command => 'add'
-                If you want to get the data of all users, enter the command => 'getAllUsers'
-                If you want to get user data by ID , enter the command => 'getUserForId'""";
-
     }
 }

@@ -3,9 +3,11 @@ import java.util.Scanner;
 
 public class GetUserToIdCommand implements Command {
     private final UsersBook usersBook;
+    private final String info = "If you want to get user data by ID , enter the command => 'getUserForId'";
 
     public GetUserToIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
+        System.out.println(this);
     }
 
     @Override
@@ -27,5 +29,9 @@ public class GetUserToIdCommand implements Command {
             System.out.println("Пользователь с id: " + id + " не найден");
         }
         System.out.println(SEPARATOR);
+    }
+    @Override
+    public String toString() {
+        return info;
     }
 }

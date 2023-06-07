@@ -8,7 +8,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println(commands);
             String inputCommand = scanner.nextLine();
             commands.executeCommand(inputCommand);
         }
