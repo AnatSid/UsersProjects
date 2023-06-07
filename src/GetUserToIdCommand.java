@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class GetUserToIdCommand implements Command {
     private final UsersBook usersBook;
-    private final String SEPARATOR = "____________________________________________________________________________";
 
     public GetUserToIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
@@ -24,10 +23,10 @@ public class GetUserToIdCommand implements Command {
                 System.out.println("Ошибка ввода, нужно вводить только числа (целочисленные)");
             }
         }
-        if(usersBook.getUserById(id)!=null) {
+        if (usersBook.getUserById(id) != null) {
             System.out.println("Пользователь с id: " + id + " -> " + usersBook.getUserById(id));
             System.out.println("________________________________________________________________");
-        }else {
+        } else {
             System.out.println("Пользователь с id: " + id + " не найден");
             System.out.println(SEPARATOR);
         }

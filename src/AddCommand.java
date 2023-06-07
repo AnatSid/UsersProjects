@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class AddCommand implements Command {
     private final UsersBook usersBook;
-    private final String SEPARATOR = "____________________________________________________________________________";
 
     public AddCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
