@@ -25,11 +25,12 @@ public class User {
     public String getName() {
         return name;
     }
+
     @Override
     public String toString() {
-        return "Имя = '" + name + '\'' +
-                ", Фамилия = '" + surName + '\'' +
-                ", Возраст = " + age;
+        return "Name = '" + name + '\'' +
+                ", Surname = '" + surName + '\'' +
+                ", Age = " + age;
     }
 
     public void setName(String name) {

@@ -6,7 +6,6 @@ public class AddCommand implements Command {
 
     public AddCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
-        System.out.println(this);
     }
 
     @Override
@@ -17,19 +16,19 @@ public class AddCommand implements Command {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя: ");
+        System.out.println("Enter your name: ");
         String name = scanner.nextLine();
 
-        System.out.println("Введите фамилию:");
+        System.out.println("Enter last name:");
         String surName = scanner.nextLine();
 
-        System.out.println("Введите возраст:");
+        System.out.println("Enter age:");
         int age = scanner.nextInt();
         scanner.nextLine();
 
         User user = new User(name, surName, age);
         usersBook.addUser(user);
-        System.out.println("Новый пользователь создан\n" + user + "\nID пользователя: " + user.getId());
+        System.out.println("New user created:\n" + user + "\nUser ID: " + user.getId());
         System.out.println(SEPARATOR);
     }
 }
