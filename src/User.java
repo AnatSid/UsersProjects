@@ -1,4 +1,4 @@
-import java.util.Random;
+
 
 public class User {
     private Integer id;
@@ -7,26 +7,30 @@ public class User {
     private int age;
     private static int idGenerator;
 
+    public User() {
+        this.id = idGenerator;
+        idGenerator++;
+
+    }
+
     public User(String name, String surName, Integer age) {
         this.name = name;
         this.surName = surName;
         this.age = age;
         idGenerator++;
-        id = idGenerator;
-    }
+        this.id = idGenerator;
 
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {
         return name;
     }
+
     @Override
     public String toString() {
-        return "Имя = '" + name + '\'' +
-                ", Фамилия = '" + surName + '\'' +
-                ", Возраст = " + age;
+        return "Name = '" + name + '\'' +
+                ", Surname = '" + surName + '\'' +
+                ", Age = " + age;
     }
 
     public void setName(String name) {
@@ -47,6 +51,14 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }
 
