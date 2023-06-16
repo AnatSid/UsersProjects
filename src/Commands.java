@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Commands {
-    private final HashMap <String, Command> commands;
+    private final HashMap<String, Command> commands;
     private static final String ADD = "add";
     private static final String GET_ALL_USERS = "getAllUsers";
     private static final String GET_USER_TO_ID = "getUserForId";
@@ -24,6 +24,10 @@ public class Commands {
 
     @Override
     public String toString() {
-        return commands.values().toString();
+        StringBuilder commandInfo = new StringBuilder();
+        for (Command info : commands.values()) {
+            commandInfo.append(info.toString()).append("\n");
+        }
+        return commandInfo.toString();
     }
 }
