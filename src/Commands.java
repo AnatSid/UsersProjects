@@ -5,7 +5,7 @@ public class Commands {
     private static final String ADD = "add";
     private static final String GET_ALL_USERS = "getAllUsers";
     private static final String GET_USER_TO_ID = "getUserForId";
-    Adding a new command to delete a user by id    private static final String REMOVE_BY_ID = "removeById";
+    private static final String REMOVE_BY_ID = "removeById";
 
 
     public Commands(UsersBook usersBook) {
