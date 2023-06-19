@@ -1,4 +1,4 @@
-public class AddAndNotifyCommand implements InterfaceCommand {
+public class AddAndNotifyCommand implements Command {
 
     private final UsersBook usersBook;
     private final String info = "If you want to add a new user and notify him, enter the command => 'addAndNotify'";
@@ -9,13 +9,12 @@ public class AddAndNotifyCommand implements InterfaceCommand {
 
     @Override
     public void execute() {
-        InterfaceCommand add = new AddCommand(usersBook);
-        add.execute();
+        AddCommand add = new AddCommand(usersBook);
+        User user = add.createNewUser();
+        usersBook.addUser(user);
 
         Notifications emailNotification = new EmailNotification();
-        emailNotification.sendNotification("You have successfully registered in our service." +
-                " A notification has been sent to your email");
-
+        emailNotification.sendNotification("You have successfully registered in our service. Your ID: "+ user.getId());
         System.out.println(SEPARATOR);
     }
 

@@ -1,4 +1,4 @@
-public interface InterfaceCommand {
+public interface Command {
     String SEPARATOR = "____________________________________________________________________________";
     void execute();
 }

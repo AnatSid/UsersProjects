@@ -1,4 +1,4 @@
-public class GetAllUsersCommand implements InterfaceCommand {
+public class GetAllUsersCommand implements Command {
     private final UsersBook usersBook;
     private final String info = "If you want to get the data of all users, enter the command => 'getAllUsers'";
     public GetAllUsersCommand(UsersBook usersBook) {

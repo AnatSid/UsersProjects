@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class AddCommand implements InterfaceCommand {
+public class AddCommand implements Command {
     private final UsersBook usersBook;
     private final String info = "If you want to add a new user, enter the command => 'add'";
 
@@ -15,6 +15,13 @@ public class AddCommand implements InterfaceCommand {
 
     @Override
     public void execute() {
+        User user = this.createNewUser();
+        usersBook.addUser(user);
+        System.out.println("New user created:\n" + user + "\nUser ID: " + user.getId());
+        System.out.println(SEPARATOR);
+    }
+
+    public User createNewUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your name: ");
         String name = scanner.nextLine();
@@ -26,9 +33,6 @@ public class AddCommand implements InterfaceCommand {
         int age = scanner.nextInt();
         scanner.nextLine();
 
-        User user = new User(name, surName, age);
-        usersBook.addUser(user);
-        System.out.println("New user created:\n" + user + "\nUser ID: " + user.getId());
-        System.out.println(SEPARATOR);
+        return new User(name, surName, age);
     }
 }

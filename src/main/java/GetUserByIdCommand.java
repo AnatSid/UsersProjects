@@ -1,12 +1,11 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class RemoveUserByIdCommand implements InterfaceCommand {
-
+public class GetUserByIdCommand implements Command {
     private final UsersBook usersBook;
-    private final String info = "If you want to delete a user by id, write the command => 'removeById'";
+    private final String info = "If you want to get user data by ID , enter the command => 'getUserForId'";
 
-    public RemoveUserByIdCommand(UsersBook usersBook) {
+    public GetUserByIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
     }
 
@@ -22,9 +21,9 @@ public class RemoveUserByIdCommand implements InterfaceCommand {
             System.out.println(SEPARATOR);
             return;
         }
+
         if (usersBook.getUserById(id) != null) {
-            usersBook.removeById(id);
-            System.out.println("User with id: " + id + " -> has been deleted");
+            System.out.println("User with id: " + id + " -> " + usersBook.getUserById(id));
         } else {
             System.out.println("User with id: " + id + " not found");
         }
