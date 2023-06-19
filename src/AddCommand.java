@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class AddCommand implements Command {
+public class AddCommand implements InterfaceCommand {
     private final UsersBook usersBook;
     private final String info = "If you want to add a new user, enter the command => 'add'";
 

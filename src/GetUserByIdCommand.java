@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class GetUserByIdCommand implements Command {
+public class GetUserByIdCommand implements InterfaceCommand {
     private final UsersBook usersBook;
     private final String info = "If you want to get user data by ID , enter the command => 'getUserForId'";
 

@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class RemoveUserByIdCommand implements Command {
+public class RemoveUserByIdCommand implements InterfaceCommand {
 
     private final UsersBook usersBook;
     private final String info = "If you want to delete a user by id, write the command => 'removeById'";
