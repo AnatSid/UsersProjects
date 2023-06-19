@@ -30,7 +30,8 @@ public class User {
     public String toString() {
         return "Name = '" + name + '\'' +
                 ", Surname = '" + surName + '\'' +
-                ", Age = " + age;
+                ", Age = " + age + '\'' +
+                ", Id = " + id;
     }
 
     public void setName(String name) {
