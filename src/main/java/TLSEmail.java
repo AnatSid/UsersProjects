@@ -1,13 +1,12 @@
-
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
 public class TLSEmail {
-    public void sendEmail(String toMail, String message) {
-        final String fromEmail = "ansidtyrksony1995@gmail.com";
-        final String password = "icgnrnkfveoqzgpz";
+    public void sendEmail(String fromMail, String pass, String toMail, String message) {
+        final String fromEmail = fromMail;
+        final String password = pass;
         final String toEmail = toMail;
 
         Properties props = new Properties();
@@ -23,10 +22,9 @@ public class TLSEmail {
                 return new PasswordAuthentication(fromEmail, password);
             }
         };
+
         Session session = Session.getInstance(props, auth);
 
         EmailUtil.sendEmail(session, toEmail, "Userbook greeting you", message);
-
-
     }
 }

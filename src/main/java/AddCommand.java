@@ -15,13 +15,6 @@ public class AddCommand implements Command {
 
     @Override
     public void execute() {
-        User user = this.createNewUser();
-        usersBook.addUser(user);
-        System.out.println("New user created:\n" + user + "\nUser ID: " + user.getId());
-        System.out.println(SEPARATOR);
-    }
-
-    public User createNewUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your name: ");
         String name = scanner.nextLine();
@@ -32,7 +25,10 @@ public class AddCommand implements Command {
         System.out.println("Enter age:");
         int age = scanner.nextInt();
         scanner.nextLine();
+        User user = new User(name, surName, age);
+        usersBook.addUser(user);
 
-        return new User(name, surName, age);
+        System.out.println("New user created:\n" + user + "\nUser ID: " + user.getId());
+        System.out.println(SEPARATOR);
     }
 }

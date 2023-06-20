@@ -1,14 +1,12 @@
-import java.util.Scanner;
 
-public class EmailNotification implements Notifications {
+public class EmailNotification implements NotificationService {
     @Override
-    public void sendNotification(String message) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your email");
-        String email = scanner.nextLine();
-
+    public void sendNotification(NotificationData notificationData) {
         TLSEmail tlsEmail = new TLSEmail();
-        tlsEmail.sendEmail(email, message);
-
+        tlsEmail.sendEmail(
+                notificationData.getEmailFrom(),
+                notificationData.getEmailPasswordKey(),
+                notificationData.getEmailTo(),
+                notificationData.getEmailNotificationText());
     }
 }

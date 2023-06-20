@@ -22,6 +22,9 @@ public class UsersBook {
         if (userId != null && users.containsKey(userId)) {
             users.remove(userId);
         }
+    }
 
+    public User getLastAddedUser() {
+        return users.get(users.size());
     }
 }

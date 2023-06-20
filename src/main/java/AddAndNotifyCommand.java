@@ -1,5 +1,6 @@
-public class AddAndNotifyCommand implements Command {
+import java.util.Scanner;
 
+public class AddAndNotifyCommand implements Command {
     private final UsersBook usersBook;
     private final String info = "If you want to add a new user and notify him, enter the command => 'addAndNotify'";
 
@@ -10,11 +11,22 @@ public class AddAndNotifyCommand implements Command {
     @Override
     public void execute() {
         AddCommand add = new AddCommand(usersBook);
-        User user = add.createNewUser();
-        usersBook.addUser(user);
+        add.execute();
 
-        Notifications emailNotification = new EmailNotification();
-        emailNotification.sendNotification("You have successfully registered in our service. Your ID: "+ user.getId());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your email to send a notification");
+        String emailTo = scanner.nextLine();
+
+        NotificationData notificationData = new NotificationData();
+        notificationData.setEmailTo(emailTo);
+        notificationData.setEmailNotificationText(
+                "You have successfully registered in our service 'Users book'. " +
+                        "Your ID: " + usersBook.getLastAddedUser().getId());
+
+        NotificationService emailNotification = new EmailNotification();
+        emailNotification.sendNotification(notificationData);
+
+        System.out.println("EMail Sent Successfully!!!");
         System.out.println(SEPARATOR);
     }
 
