@@ -19,11 +19,10 @@ public class UsersBook {
     }
 
     public void removeById(Integer userId) {
-        if (userId != null && users.containsKey(userId)) {
+        if (userId != null) {
             users.remove(userId);
         }
     }
-
     public User getLastAddedUser() {
         int maxId = 0;
         for (User user : users.values()) {

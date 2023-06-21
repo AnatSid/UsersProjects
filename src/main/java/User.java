@@ -1,17 +1,11 @@
 
 
 public class User {
-    private Integer id;
-    private String name;
-    private String surName;
-    private int age;
+    private final Integer id;
+    private final String name;
+    private final String surName;
+    private final int age;
     private static int idGenerator;
-
-    public User() {
-        this.id = idGenerator;
-        idGenerator++;
-
-    }
 
     public User(String name, String surName, Integer age) {
         this.name = name;
@@ -22,40 +16,12 @@ public class User {
 
     }
 
-    public String getName() {
-        return name;
-    }
-
     @Override
     public String toString() {
         return "Name = '" + name + '\'' +
                 ", Surname = '" + surName + '\'' +
                 ", Age = " + age + '\'' +
                 ", Id = " + id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurName() {
-        return surName;
-    }
-
-    public void setSurName(String surName) {
-        this.surName = surName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getId() {

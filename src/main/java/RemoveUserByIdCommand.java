@@ -12,7 +12,7 @@ public class RemoveUserByIdCommand implements Command {
     @Override
     public void execute() {
         int id;
-        System.out.println("Enter user id: ");
+        System.out.println("Enter user id to delete: ");
         Scanner scanner = new Scanner(System.in);
         try {
             id = scanner.nextInt();
