@@ -23,10 +23,9 @@ public class AddAndNotifyCommand implements Command {
                 "You have successfully registered in our service 'Users book'. " +
                         "Your ID: " + usersBook.getLastAddedUser().getId());
 
-        NotificationService emailNotification = new EmailNotification();
+        NotificationService emailNotification = new EmailNotificationService();
         emailNotification.sendNotification(notificationData);
 
-        System.out.println("EMail Sent Successfully!!!");
         System.out.println(SEPARATOR);
     }
 

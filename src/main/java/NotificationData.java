@@ -1,6 +1,6 @@
 public class NotificationData {
-    private String emailFrom = "ansidtyrksony1995@gmail.com";
-    private String emailPasswordKey = "icgnrnkfveoqzgpz";
+    private final String emailFrom = "ansidtyrksony1995@gmail.com";
+    private final String emailPasswordKey = "icgnrnkfveoqzgpz";
     private String emailTo;
     private String emailNotificationText;
 

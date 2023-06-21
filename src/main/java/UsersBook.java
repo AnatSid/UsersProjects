@@ -25,6 +25,12 @@ public class UsersBook {
     }
 
     public User getLastAddedUser() {
-        return users.get(users.size());
+        int maxId = 0;
+        for (User user : users.values()) {
+            if (user.getId() > maxId) {
+                maxId = user.getId();
+            }
+        }
+        return users.get(maxId);
     }
 }
