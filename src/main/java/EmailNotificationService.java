@@ -5,20 +5,30 @@ import java.util.Date;
 import java.util.Properties;
 
 public class EmailNotificationService implements NotificationService {
-    @Override
-    public void sendNotification(NotificationData notificationData) {
-        this.takeDataAndSendEmail(
-                notificationData.getEmailFrom(),
-                notificationData.getEmailPasswordKey(),
-                notificationData.getEmailTo(),
-                notificationData.getEmailNotificationText());
+
+    private final String fromEmail;
+    private final String passwordKey;
+    private final String subjectMailMessage;
+    private final String emailNotificationText;
+
+    public EmailNotificationService(String fromEmail, String passwordKey, String subjectMailMessage, String emailNotificationText) {
+        this.fromEmail = fromEmail;
+        this.passwordKey = passwordKey;
+        this.subjectMailMessage = subjectMailMessage;
+        this.emailNotificationText = emailNotificationText;
     }
 
-    private void takeDataAndSendEmail(String fromMail, String pass, String toMail, String msg) {
-        final String fromEmail = fromMail;
-        final String password = pass;
-        final String toEmail = toMail;
-        final String message = msg;
+    @Override
+    public void sendNotification(NotificationData notificationData) {
+        this.SendEmail(
+                fromEmail,
+                passwordKey,
+                notificationData.getEmailTo(),
+                subjectMailMessage,
+                emailNotificationText);
+    }
+
+    private void SendEmail(String fromEmail, String passwordKey, String toEmail, String subjectMailMessage, String message) {
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
@@ -29,15 +39,11 @@ public class EmailNotificationService implements NotificationService {
         Authenticator auth = new Authenticator() {
             //override the getPasswordAuthentication method
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(fromEmail, password);
+                return new PasswordAuthentication(fromEmail, passwordKey);
             }
         };
         Session session = Session.getInstance(props, auth);
 
-        SendingMail(session, toEmail, "Userbook greeting you" , message);
-    }
-
-    private static void SendingMail(Session session, String toEmail, String subject, String body) {
         try {
             MimeMessage msg = new MimeMessage(session);
 
@@ -49,9 +55,9 @@ public class EmailNotificationService implements NotificationService {
 
             msg.setReplyTo(InternetAddress.parse("no_reply@example.com", false));
 
-            msg.setSubject(subject, "UTF-8");
+            msg.setSubject(subjectMailMessage, "UTF-8");
 
-            msg.setText(body, "UTF-8");
+            msg.setText(message, "UTF-8");
 
             msg.setSentDate(new Date());
 
@@ -62,7 +68,8 @@ public class EmailNotificationService implements NotificationService {
             System.out.println("EMail Sent Successfully!!!");
 
         } catch (Exception e) {
-            System.out.println("Error. Try again");
+            System.out.println("Error");
         }
+
     }
 }
