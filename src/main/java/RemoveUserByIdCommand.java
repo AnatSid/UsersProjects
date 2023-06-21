@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class RemoveUserByIdCommand implements Command {
 
     private final UsersBook usersBook;
-    private final String info = "If you want to delete a user by id, write the command => 'removeById'";
 
     public RemoveUserByIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
@@ -33,6 +32,6 @@ public class RemoveUserByIdCommand implements Command {
 
     @Override
     public String toString() {
-        return info;
+        return "If you want to delete a user by id, write the command => 'removeById'";
     }
 }

@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class GetUserByIdCommand implements Command {
     private final UsersBook usersBook;
-    private final String info = "If you want to get user data by ID , enter the command => 'getUserForId'";
 
     public GetUserByIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
@@ -32,6 +31,6 @@ public class GetUserByIdCommand implements Command {
 
     @Override
     public String toString() {
-        return info;
+        return "If you want to get user data by ID , enter the command => 'getUserForId'";
     }
 }
