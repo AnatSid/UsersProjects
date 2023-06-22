@@ -20,7 +20,7 @@ public class EmailNotificationService implements NotificationService {
 
     @Override
     public void sendNotification(NotificationData notificationData) {
-        this.SendEmail(
+        this.sendEmail(
                 fromEmail,
                 passwordKey,
                 notificationData.getEmailTo(),
@@ -28,7 +28,7 @@ public class EmailNotificationService implements NotificationService {
                 emailNotificationText);
     }
 
-    private void SendEmail(String fromEmail, String passwordKey, String toEmail, String subjectMailMessage, String message) {
+    private void sendEmail(String fromEmail, String passwordKey, String toEmail, String subjectMailMessage, String message) {
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host

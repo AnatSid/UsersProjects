@@ -23,13 +23,8 @@ public class UsersBook {
             users.remove(userId);
         }
     }
+
     public User getLastAddedUser() {
-        int maxId = 0;
-        for (User user : users.values()) {
-            if (user.getId() > maxId) {
-                maxId = user.getId();
-            }
-        }
-        return users.get(maxId);
+        return users.values().stream().max(Comparator.comparing(User::getId)).orElse(null);
     }
 }
