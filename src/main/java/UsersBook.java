@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class UsersBook {
     private final Map<Integer, User> users = new HashMap<>();
 
@@ -25,6 +24,8 @@ public class UsersBook {
     }
 
     public User getLastAddedUser() {
-        return users.values().stream().max(Comparator.comparing(User::getId)).orElse(null);
+        return users.values().stream()
+                .max(Comparator.comparing(User::getId))
+                .orElse(null);
     }
 }

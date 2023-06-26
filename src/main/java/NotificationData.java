@@ -1,5 +1,6 @@
 public class NotificationData {
 
+
     private String nameService;
     private String emailTo;
 
@@ -18,6 +19,5 @@ public class NotificationData {
     public String getEmailTo() {
         return emailTo;
     }
-
 
 }
