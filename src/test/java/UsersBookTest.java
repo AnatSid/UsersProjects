@@ -24,13 +24,13 @@ class UsersBookTest {
     }
 
     @Test
-    void addUser() {
+    void testAddUser() {
         usersBook.addUser(user1);
         assertEquals(user1, usersBook.getUserById(user1.getId()));
     }
 
     @Test
-    void findAll() {
+    void testFindAll() {
         List<User> userArrayList = new ArrayList<>();
         userArrayList.add(user1);
         userArrayList.add(user2);
@@ -44,14 +44,14 @@ class UsersBookTest {
     }
 
     @Test
-    void getUserById() {
+    void testGetUserById() {
         usersBook.addUser(user1);
         int id = user1.getId();
         assertEquals(user1, usersBook.getUserById(id));
     }
 
     @Test
-    void removeById() {
+    void testRemoveById() {
         int id = user1.getId();
         usersBook.addUser(user1);
         usersBook.removeById(id);
@@ -59,11 +59,13 @@ class UsersBookTest {
     }
 
     @Test
-    void getLastAddedUser() {
+    void testGetLastAddedUser() {
         usersBook.addUser(user1);
         assertEquals(user1, usersBook.getLastAddedUser());
+
         usersBook.addUser(user2);
         assertEquals(user2, usersBook.getLastAddedUser());
+
         usersBook.addUser(user3);
         assertEquals(user3, usersBook.getLastAddedUser());
     }
