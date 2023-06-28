@@ -10,17 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class UsersBookTest {
 
     UsersBook usersBook;
-    User user1;
-    User user2;
-    User user3;
+    User  user1 = new User("name1", "surname1", 20);
+    User  user2 = new User("name2", "surname2", 22);
+    User  user3 = new User("name3", "surname3", 24);
 
 
     @BeforeEach
     void setUp() {
         usersBook = new UsersBook();
-        user1 = new User("name1", "surname1", 20);
-        user2 = new User("name2", "surname2", 22);
-        user3 = new User("name3", "surname3", 24);
     }
 
     @Test
@@ -40,7 +37,7 @@ class UsersBookTest {
         usersBook.addUser(user2);
         usersBook.addUser(user3);
 
-        assertEquals(userArrayList, usersBook.findAll());
+        assertEquals(List.of(user1,user2,user3),usersBook.findAll());
     }
 
     @Test
