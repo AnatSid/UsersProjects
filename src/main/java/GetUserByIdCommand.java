@@ -1,8 +1,7 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class GetUserByIdCommand implements Command {
     private final UsersBook usersBook;
+    private InterfaceForGetUserByIdCommand interfaceForGetUserByIdCommand;
 
     public GetUserByIdCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
@@ -10,23 +9,13 @@ public class GetUserByIdCommand implements Command {
 
     @Override
     public void execute() {
-        int id;
-        System.out.println("Enter user id: ");
-        Scanner scanner = new Scanner(System.in);
-        try {
-            id = scanner.nextInt();
-        } catch (InputMismatchException exception) {
-            System.out.println("Input error, you need to enter only numbers (integer)");
-            System.out.println(SEPARATOR);
-            return;
-        }
-
-        if (usersBook.getUserById(id) != null) {
-            System.out.println("User with id: " + id + " -> " + usersBook.getUserById(id));
-        } else {
-            System.out.println("User with id: " + id + " not found");
-        }
+        interfaceForGetUserByIdCommand = new GetUserByIdForMain(usersBook);
+        interfaceForGetUserByIdCommand.assignAndExecute();
         System.out.println(SEPARATOR);
+    }
+
+    public void setInterfaceForGetUserByIdCommand(InterfaceForGetUserByIdCommand interfaceForGetUserByIdCommand) {
+        this.interfaceForGetUserByIdCommand = interfaceForGetUserByIdCommand;
     }
 
     @Override
