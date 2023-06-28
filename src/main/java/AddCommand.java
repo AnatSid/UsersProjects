@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class AddCommand implements Command {
     private final UsersBook usersBook;
-    private final String info = "If you want to add a new user, enter the command => 'add'";
 
     public AddCommand(UsersBook usersBook) {
         this.usersBook = usersBook;
@@ -10,7 +9,7 @@ public class AddCommand implements Command {
 
     @Override
     public String toString() {
-        return info;
+        return"If you want to add a new user, enter the command => 'add'";
     }
 
     @Override
@@ -25,9 +24,9 @@ public class AddCommand implements Command {
         System.out.println("Enter age:");
         int age = scanner.nextInt();
         scanner.nextLine();
-
         User user = new User(name, surName, age);
         usersBook.addUser(user);
+
         System.out.println("New user created:\n" + user + "\nUser ID: " + user.getId());
         System.out.println(SEPARATOR);
     }
