@@ -2,7 +2,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,11 +27,6 @@ class UsersBookTest {
 
     @Test
     void testFindAll() {
-        List<User> userArrayList = new ArrayList<>();
-        userArrayList.add(user1);
-        userArrayList.add(user2);
-        userArrayList.add(user3);
-
         usersBook.addUser(user1);
         usersBook.addUser(user2);
         usersBook.addUser(user3);
