@@ -1,6 +1,6 @@
 public class GetByIdForTest implements Command {
 
-    public boolean executionResult = false;
+    private boolean executionResult = false;
     private final UsersBook usersBook;
 
     public GetByIdForTest(UsersBook usersBook) {
