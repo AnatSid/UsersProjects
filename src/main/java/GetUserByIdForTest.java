@@ -1,32 +1,38 @@
 import java.util.InputMismatchException;
 
-public class GetUserByIdCommand implements Command {
-    private final UsersBook usersBook;
+public class GetUserByIdForTest implements Command {
 
-    public GetUserByIdCommand(UsersBook usersBook) {
+    private final UsersBook usersBook;
+    private String finalOutputInformation;
+
+
+    public GetUserByIdForTest(UsersBook usersBook) {
         this.usersBook = usersBook;
     }
 
     @Override
     public void execute() {
         int id;
-        System.out.println("Enter user id: ");
-        ConsoleReader consoleReader = new ScannerForMain();
+        ConsoleReader consoleReader = new ScannerForTest();
         try {
             id = consoleReader.readInt();
         } catch (InputMismatchException exception) {
-            System.out.println("Input error, you need to enter only numbers (integer)");
-            System.out.println(SEPARATOR);
             return;
         }
         OutputService outputService = new OutputInfoByGetIdCommand(usersBook,id);
-        System.out.println(outputService.collectOutputInfo());
+        finalOutputInformation = outputService.collectOutputInfo();
 
-        System.out.println(SEPARATOR);
+
+    }
+
+    public String getFinalOutputInformation() {
+        return finalOutputInformation;
     }
 
     @Override
     public String toString() {
         return "If you want to get user data by ID , enter the command => 'getUserForId'";
     }
+
+
 }
