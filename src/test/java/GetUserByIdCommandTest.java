@@ -12,20 +12,18 @@ class GetUserByIdCommandTest {
         User user = new User("name", "surname", 1);
         usersBook.addUser(user);
 
-        GetUserByIdCommand getUserByIdCommand = new GetUserByIdCommand(usersBook, console);
+        Command command = new GetUserByIdCommand(usersBook, console);
 
-        boolean consoleMessageBeforeExecuted = console.messages.isEmpty();
-        Assertions.assertTrue(consoleMessageBeforeExecuted);
+        boolean isConsoleEmpty = console.messages.isEmpty();
+        Assertions.assertTrue(isConsoleEmpty);
 
-        getUserByIdCommand.execute();
+        command.execute();
 
-        boolean consoleMessageAfterExecuted = console.messages.isEmpty();
-        Assertions.assertFalse(consoleMessageAfterExecuted);
-
-        Optional<String> successMsqForTest = console.messages
+        Optional<String> successMsqForTest = Optional.ofNullable(console.messages
                 .stream()
                 .filter(message -> message.startsWith("User with id: 1"))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(RuntimeException::new));
 
         if (successMsqForTest.isEmpty()) {
             throw new RuntimeException("Test fail. Test-message is empty.");
