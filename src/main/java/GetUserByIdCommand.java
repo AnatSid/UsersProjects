@@ -1,32 +1,30 @@
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class GetUserByIdCommand implements Command {
     private final UsersBook usersBook;
+    private final Console console;
 
-    public GetUserByIdCommand(UsersBook usersBook) {
+    public GetUserByIdCommand(UsersBook usersBook, Console console) {
         this.usersBook = usersBook;
+        this.console = console;
     }
 
     @Override
     public void execute() {
-        int id;
-        System.out.println("Enter user id: ");
-        Scanner scanner = new Scanner(System.in);
+        console.printLn("Enter user id: ");
         try {
-            id = scanner.nextInt();
-        } catch (InputMismatchException exception) {
-            System.out.println("Input error, you need to enter only numbers (integer)");
-            System.out.println(SEPARATOR);
-            return;
-        }
+            int userId = console.nextInt();
+            if (usersBook.getUserById(userId) != null) {
+                console.printLn("User with id: " + userId + " -> " + usersBook.getUserById(userId));
+            } else {
+                console.printLn("User with id: " + userId + " not found");
+            }
+            console.printLn(SEPARATOR);
 
-        if (usersBook.getUserById(id) != null) {
-            System.out.println("User with id: " + id + " -> " + usersBook.getUserById(id));
-        } else {
-            System.out.println("User with id: " + id + " not found");
+        }catch (InputMismatchException exception){
+            console.printLn("Input error, you need to enter only numbers (integer)");
+            console.printLn(SEPARATOR);
         }
-        System.out.println(SEPARATOR);
     }
 
     @Override

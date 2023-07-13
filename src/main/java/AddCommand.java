@@ -8,11 +8,6 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public String toString() {
-        return"If you want to add a new user, enter the command => 'add'";
-    }
-
-    @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your name: ");
@@ -29,5 +24,9 @@ public class AddCommand implements Command {
 
         System.out.println("New user created:\n" + user + "\nUser ID: " + user.getId());
         System.out.println(SEPARATOR);
+    }
+    @Override
+    public String toString() {
+        return "If you want to add a new user, enter the command => 'add'";
     }
 }
