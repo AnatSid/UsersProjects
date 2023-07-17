@@ -2,7 +2,7 @@ import java.util.List;
 
 public class FakeUserbook implements Book {
 
-    private User user;
+    private final User user;
     public boolean userAdded;
     public boolean userRemoved;
 

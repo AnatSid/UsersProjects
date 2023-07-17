@@ -1,16 +1,13 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 class GetUserByIdCommandTest {
 
     @Test
     void shouldExecuteIfUserIdWasFound() {
-        UsersBook usersBook = new UsersBook();
-        TestConsole console = new TestConsole(1);
         User user = new User("name", "surname", 1);
-        usersBook.addUser(user);
+        Book usersBook = new FakeUserbook(user);
+        FakeConsole console = new FakeConsole("1");
 
         Command command = new GetUserByIdCommand(usersBook, console);
 
@@ -19,15 +16,37 @@ class GetUserByIdCommandTest {
 
         command.execute();
 
-        Optional<String> successMsqForTest = Optional.ofNullable(console.messages
+        String successfulExecutionConsole = console.messages
                 .stream()
                 .filter(message -> message.startsWith("User with id: 1"))
                 .findFirst()
-                .orElseThrow(RuntimeException::new));
+                .orElseThrow(() -> new RuntimeException("Test fail. Test-message is empty."));
 
-        if (successMsqForTest.isEmpty()) {
+        if (successfulExecutionConsole.isEmpty()) {
             throw new RuntimeException("Test fail. Test-message is empty.");
         }
+
+    }
+
+    @Test
+    void shouldExecuteIfUserIdNotWasFound() {
+
+        Book usersBook = new FakeUserbook(null);
+        FakeConsole console = new FakeConsole("2");
+
+        Command command = new GetUserByIdCommand(usersBook, console);
+
+        boolean isConsoleEmpty = console.messages.isEmpty();
+        Assertions.assertTrue(isConsoleEmpty);
+
+        command.execute();
+
+        boolean successfulExecutionConsole = console.messages
+                .stream()
+                .anyMatch(message -> message.startsWith("User with id: 2 not found"));
+
+        Assertions.assertTrue(successfulExecutionConsole, "Message is Empty. 'Else' block failed");
+
 
     }
 
