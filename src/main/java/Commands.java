@@ -9,13 +9,13 @@ public class Commands {
     private static final String ADD_AND_NOTIFY = "addAndNotify";
 
 
-    public Commands(UsersBook usersBook) {
+    public Commands(UsersBook usersBook, Console console) {
         commands = new HashMap<>();
-        commands.put(ADD, new AddCommand(usersBook));
+        commands.put(ADD, new AddCommand(usersBook,console));
         commands.put(GET_ALL_USERS, new GetAllUsersCommand(usersBook));
-        commands.put(GET_USER_TO_ID, new GetUserByIdCommand(usersBook, new RealConsole()));
-        commands.put(REMOVE_BY_ID, new RemoveUserByIdCommand(usersBook));
-        commands.put(ADD_AND_NOTIFY, new AddAndNotifyCommand(usersBook));
+        commands.put(GET_USER_TO_ID, new GetUserByIdCommand(usersBook, console));
+        commands.put(REMOVE_BY_ID, new RemoveUserByIdCommand(usersBook,console));
+        commands.put(ADD_AND_NOTIFY, new AddAndNotifyCommand(usersBook, console));
     }
 
     public void executeCommand(String inputCommand) {

@@ -1,33 +1,32 @@
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class RemoveUserByIdCommand implements Command {
 
-    private final UsersBook usersBook;
+    private final Book usersBook;
+    private final Console console;
 
-    public RemoveUserByIdCommand(UsersBook usersBook) {
+    public RemoveUserByIdCommand(Book usersBook, Console console) {
         this.usersBook = usersBook;
+        this.console = console;
     }
 
     @Override
     public void execute() {
-        int id;
-        System.out.println("Enter user id to delete: ");
-        Scanner scanner = new Scanner(System.in);
+        console.printLn("Enter user id: ");
         try {
-            id = scanner.nextInt();
+            int userId = console.nextInt();
+            if (usersBook.getUserById(userId) != null) {
+                usersBook.removeById(userId);
+                console.printLn("User with id: " + userId + " -> has been deleted");
+            } else {
+                console.printLn("User with id: " + userId + " not found");
+            }
+            console.printLn(SEPARATOR);
+
         } catch (InputMismatchException exception) {
-            System.out.println("Input error, you need to enter only numbers (integer)");
-            System.out.println(SEPARATOR);
-            return;
+            console.printLn("Input error, you need to enter only numbers (integer)");
+            console.printLn(SEPARATOR);
         }
-        if (usersBook.getUserById(id) != null) {
-            usersBook.removeById(id);
-            System.out.println("User with id: " + id + " -> has been deleted");
-        } else {
-            System.out.println("User with id: " + id + " not found");
-        }
-        System.out.println(SEPARATOR);
     }
 
     @Override
