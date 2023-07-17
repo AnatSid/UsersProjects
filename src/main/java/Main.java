@@ -4,7 +4,8 @@ public class Main {
     public static void main(String[] args) {
         UsersBook usersBook = new UsersBook();
         Scanner scanner = new Scanner(System.in);
-        Commands commands = new Commands(usersBook);
+        Console console = new RealConsole();
+        Commands commands = new Commands(usersBook,console);
 
         while (true) {
             System.out.println(commands);

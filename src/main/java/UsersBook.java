@@ -1,5 +1,5 @@
 import java.util.*;
-public class UsersBook {
+public class UsersBook implements Book{
     private final Map<Integer, User> users = new HashMap<>();
 
     public void addUser(User user) {

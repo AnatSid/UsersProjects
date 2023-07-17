@@ -1,10 +1,10 @@
 import java.util.InputMismatchException;
 
 public class GetUserByIdCommand implements Command {
-    private final UsersBook usersBook;
+    private final Book usersBook;
     private final Console console;
 
-    public GetUserByIdCommand(UsersBook usersBook, Console console) {
+    public GetUserByIdCommand(Book usersBook, Console console) {
         this.usersBook = usersBook;
         this.console = console;
     }
