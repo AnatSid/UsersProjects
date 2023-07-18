@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class FakeUserbook implements Book {
+public class FakeUserbook implements UserBook {
 
     private final User user;
     public boolean userAdded;

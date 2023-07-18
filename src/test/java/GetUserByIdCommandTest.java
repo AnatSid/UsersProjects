@@ -6,7 +6,7 @@ class GetUserByIdCommandTest {
     @Test
     void shouldPrintInfoAboutUserReceivedByIdIfUserIdPresentInUsersBook() {
         User user = new User("name", "surname", 1);
-        UserBook usersBook = new FakeUserbookClass(user);
+        UserBook usersBook = new FakeUserbook(user);
         FakeConsole console = new FakeConsole("1");
 
         Command command = new GetUserByIdCommand(usersBook, console);
@@ -26,7 +26,7 @@ class GetUserByIdCommandTest {
     @Test
     void shouldPrintUserNotFoundWhenUserIdNotPresentInUsersBook() {
 
-        UserBook usersBook = new FakeUserbookClass(null);
+        UserBook usersBook = new FakeUserbook(null);
         FakeConsole console = new FakeConsole("2");
 
         Command command = new GetUserByIdCommand(usersBook, console);
