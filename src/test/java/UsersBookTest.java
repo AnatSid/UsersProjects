@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UsersBookTest {
 
-    Book usersBook;
+    UserBook usersBook;
     User  user1 = new User("name1", "surname1", 20);
     User  user2 = new User("name2", "surname2", 22);
     User  user3 = new User("name3", "surname3", 24);

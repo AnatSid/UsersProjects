@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         UsersBook usersBook = new UsersBook();
         Scanner scanner = new Scanner(System.in);
-        Console console = new RealConsole();
+        Console console = new RealConsole(scanner);
         Commands commands = new Commands(usersBook,console);
 
         while (true) {

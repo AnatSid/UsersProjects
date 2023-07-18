@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 class GetUserByIdCommandTest {
 
     @Test
-    void shouldExecuteIfUserIdWasFound() {
+    void shouldPrintInfoAboutUserReceivedByIdIfUserIdPresentInUsersBook() {
         User user = new User("name", "surname", 1);
-        Book usersBook = new FakeUserbook(user);
+        UserBook usersBook = new FakeUserbookClass(user);
         FakeConsole console = new FakeConsole("1");
 
         Command command = new GetUserByIdCommand(usersBook, console);
@@ -16,22 +16,17 @@ class GetUserByIdCommandTest {
 
         command.execute();
 
-        String successfulExecutionConsole = console.messages
+        boolean isUserNotFoundMessagePresent = console.messages
                 .stream()
-                .filter(message -> message.startsWith("User with id: 1"))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Test fail. Test-message is empty."));
+                .anyMatch(message -> message.startsWith("User with id: 1"));
 
-        if (successfulExecutionConsole.isEmpty()) {
-            throw new RuntimeException("Test fail. Test-message is empty.");
-        }
-
+        Assertions.assertTrue(isUserNotFoundMessagePresent, "Test fail. Test-message is empty.");
     }
 
     @Test
-    void shouldExecuteIfUserIdNotWasFound() {
+    void shouldPrintUserNotFoundWhenUserIdNotPresentInUsersBook() {
 
-        Book usersBook = new FakeUserbook(null);
+        UserBook usersBook = new FakeUserbookClass(null);
         FakeConsole console = new FakeConsole("2");
 
         Command command = new GetUserByIdCommand(usersBook, console);
@@ -41,11 +36,11 @@ class GetUserByIdCommandTest {
 
         command.execute();
 
-        boolean successfulExecutionConsole = console.messages
+        boolean isUserNotFoundMessagePresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith("User with id: 2 not found"));
 
-        Assertions.assertTrue(successfulExecutionConsole, "Message is Empty. 'Else' block failed");
+        Assertions.assertTrue(isUserNotFoundMessagePresent, "Message is Empty. 'Else' block failed");
 
 
     }
