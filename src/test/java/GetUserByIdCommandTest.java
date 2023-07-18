@@ -1,16 +1,13 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 class GetUserByIdCommandTest {
 
     @Test
-    void shouldExecuteIfUserIdWasFound() {
-        UsersBook usersBook = new UsersBook();
-        TestConsole console = new TestConsole(1);
+    void shouldPrintInfoAboutUserReceivedByIdIfUserIdPresentInUsersBook() {
         User user = new User("name", "surname", 1);
-        usersBook.addUser(user);
+        UserBook usersBook = new FakeUserbook(user);
+        FakeConsole console = new FakeConsole("1");
 
         Command command = new GetUserByIdCommand(usersBook, console);
 
@@ -19,15 +16,32 @@ class GetUserByIdCommandTest {
 
         command.execute();
 
-        Optional<String> successMsqForTest = Optional.ofNullable(console.messages
+        boolean isUserNotFoundMessagePresent = console.messages
                 .stream()
-                .filter(message -> message.startsWith("User with id: 1"))
-                .findFirst()
-                .orElseThrow(RuntimeException::new));
+                .anyMatch(message -> message.startsWith("User with id: 1"));
 
-        if (successMsqForTest.isEmpty()) {
-            throw new RuntimeException("Test fail. Test-message is empty.");
-        }
+        Assertions.assertTrue(isUserNotFoundMessagePresent, "Test fail. Test-message is empty.");
+    }
+
+    @Test
+    void shouldPrintUserNotFoundWhenUserIdNotPresentInUsersBook() {
+
+        UserBook usersBook = new FakeUserbook(null);
+        FakeConsole console = new FakeConsole("2");
+
+        Command command = new GetUserByIdCommand(usersBook, console);
+
+        boolean isConsoleEmpty = console.messages.isEmpty();
+        Assertions.assertTrue(isConsoleEmpty);
+
+        command.execute();
+
+        boolean isUserNotFoundMessagePresent = console.messages
+                .stream()
+                .anyMatch(message -> message.startsWith("User with id: 2 not found"));
+
+        Assertions.assertTrue(isUserNotFoundMessagePresent, "Message is Empty. 'Else' block failed");
+
 
     }
 

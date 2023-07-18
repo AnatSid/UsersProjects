@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        UsersBook usersBook = new UsersBook();
+        RealUsersBook realUsersBook = new RealUsersBook();
         Scanner scanner = new Scanner(System.in);
-        Commands commands = new Commands(usersBook);
+        Console console = new RealConsole(scanner);
+        Commands commands = new Commands(realUsersBook,console);
 
         while (true) {
             System.out.println(commands);
