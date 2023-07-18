@@ -23,7 +23,7 @@ public class AddCommand implements Command {
         User user = new User(name, surName, age);
         usersBook.addUser(user);
 
-        console.printLn("New user created:\n" + user + "\nUser ID: " + user.getId());
+        console.printLn("New user created: " + user);
         console.printLn(SEPARATOR);
     }
     @Override
