@@ -2,10 +2,10 @@ import java.util.InputMismatchException;
 
 public class RemoveUserByIdCommand implements Command {
 
-    private final Book usersBook;
+    private final UserBook usersBook;
     private final Console console;
 
-    public RemoveUserByIdCommand(Book usersBook, Console console) {
+    public RemoveUserByIdCommand(UserBook usersBook, Console console) {
         this.usersBook = usersBook;
         this.console = console;
     }

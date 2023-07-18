@@ -16,7 +16,7 @@ class UsersBookTest {
 
     @BeforeEach
     void setUp() {
-        usersBook = new UsersBook();
+        usersBook = new RealUsersBook();
     }
 
     @Test
