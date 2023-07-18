@@ -1,12 +1,12 @@
 public class GetAllUsersCommand implements Command {
-    private final UsersBook usersBook;
+    private final RealUsersBook realUsersBook;
 
-    public GetAllUsersCommand(UsersBook usersBook) {
-        this.usersBook = usersBook;
+    public GetAllUsersCommand(RealUsersBook realUsersBook) {
+        this.realUsersBook = realUsersBook;
     }
     @Override
     public void execute() {
-        usersBook.findAll().forEach(System.out::println);
+        realUsersBook.findAll().forEach(System.out::println);
         System.out.println(SEPARATOR);
     }
     @Override
