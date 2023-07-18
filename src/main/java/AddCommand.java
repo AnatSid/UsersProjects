@@ -1,9 +1,9 @@
 
 public class AddCommand implements Command {
-    private final Book usersBook;
+    private final UserBook usersBook;
     private final Console console;
 
-    public AddCommand(Book usersBook, Console console) {
+    public AddCommand(UserBook usersBook, Console console) {
         this.usersBook = usersBook;
         this.console = console;
     }
