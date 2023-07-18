@@ -16,11 +16,13 @@ class GetUserByIdCommandTest {
 
         command.execute();
 
-        boolean isUserNotFoundMessagePresent = console.messages
+        boolean isUserInfoMessagePresent = console.messages
                 .stream()
-                .anyMatch(message -> message.startsWith("User with id: 1"));
+                .anyMatch(message -> message.startsWith("User with id: 1 -> Name = 'name', " +
+                        "Surname = 'surname', Age = 1', Id = 1"));
 
-        Assertions.assertTrue(isUserNotFoundMessagePresent, "Test fail. Test-message is empty.");
+
+        Assertions.assertTrue(isUserInfoMessagePresent, "Test fail. Test-message is empty.");
     }
 
     @Test
