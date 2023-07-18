@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 class RemoveUserByIdCommandTest {
 
     @Test
-    void ShouldPrintUserWithIdHasBeenDeletedIfUserIdPresentInUsersBook() {
+    void shouldPrintUserWithIdHasBeenDeletedIfUserIdPresentInUsersBook() {
 
         User user = new User("name", "surname", 20);
         FakeUserbook usersBook = new FakeUserbook(user);
