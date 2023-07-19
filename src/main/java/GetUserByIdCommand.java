@@ -22,7 +22,7 @@ public class GetUserByIdCommand implements Command {
             console.printLn(SEPARATOR);
 
         }catch (InputMismatchException exception){
-            console.printLn("Input error, you need to enter only numbers (integer)");
+            console.printLn("Input error, for age you need to enter only numbers (integer)");
             console.printLn(SEPARATOR);
         }
     }

@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RealConsole implements Console {
@@ -12,7 +13,11 @@ public class RealConsole implements Console {
     }
     @Override
     public int nextInt() {
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            throw new InputMismatchException("Input error, for age you need to enter only numbers (integer)");
+        }
     }
 
     @Override
