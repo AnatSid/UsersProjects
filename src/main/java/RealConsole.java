@@ -16,8 +16,9 @@ public class RealConsole implements Console {
         try {
             return scanner.nextInt();
         } catch (InputMismatchException e) {
-            throw new InputMismatchException("Input error, for age you need to enter only numbers (integer)");
+            System.out.println("Input error, for age you need to enter only numbers (integer)");
         }
+        return nextInt();//????????? если вылелет catch, то что здесь возвращать?
     }
 
     @Override

@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class UsersBookTest {
 
     UserBook usersBook;
-    User  user1 = new User("name1", "surname1", 20);
-    User  user2 = new User("name2", "surname2", 22);
-    User  user3 = new User("name3", "surname3", 24);
+    User  user1 = new User("name1", "surname1", 20,1);
+    User  user2 = new User("name2", "surname2", 22,2);
+    User  user3 = new User("name3", "surname3", 24,3);
 
 
     @BeforeEach

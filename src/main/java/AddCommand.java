@@ -20,7 +20,10 @@ public class AddCommand implements Command {
         console.printLn("Enter age:");
         int age = console.nextInt();
 
-        User user = new User(name, surName, age);
+        console.printLn("Enter id");
+        int id = console.nextInt();
+
+        User user = new User(name, surName, age, id);
         usersBook.addUser(user);
 
         console.printLn("New user created: " + user);

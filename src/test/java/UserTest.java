@@ -6,7 +6,7 @@ class UserTest {
 
     @Test
     void testGetId() {
-        User user1 = new User("Name","Surname",20);
+        User user1 = new User("Name","Surname",20,1);
         assertEquals(1,user1.getId());
     }
 }

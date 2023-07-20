@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class FakeConsole implements Console {
@@ -21,12 +20,8 @@ public class FakeConsole implements Console {
 
     @Override
     public int nextInt() {
-        try {
-            if(nextInt==null){
-                return Integer.parseInt(nextLine);
-            }
-        } catch (Exception exception) {
-            throw new InputMismatchException ("Input error, you need to enter only numbers (integer)");
+        if (nextInt == null) {
+            return Integer.parseInt(nextLine);
         }
         return nextInt;
     }

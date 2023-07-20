@@ -11,6 +11,7 @@ public class Main {
             System.out.println(commands);
             String inputCommand = scanner.nextLine();
             commands.executeCommand(inputCommand);
+            scanner.nextLine();
         }
     }
 }

@@ -7,7 +7,7 @@ class RemoveUserByIdCommandTest {
     @Test
     void shouldPrintUserWithIdHasBeenDeletedIfUserIdPresentInUsersBook() {
 
-        User user = new User("name", "surname", 20);
+        User user = new User("name", "surname", 20,1);
         FakeUserbook usersBook = new FakeUserbook(user);
 
         FakeConsole console = new FakeConsole("1");

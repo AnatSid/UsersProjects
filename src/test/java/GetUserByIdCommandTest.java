@@ -5,7 +5,7 @@ class GetUserByIdCommandTest {
 
     @Test
     void shouldPrintInfoAboutUserReceivedByIdIfUserIdPresentInUsersBook() {
-        User user = new User("name", "surname", 1);
+        User user = new User("name", "surname", 1,1);
         UserBook usersBook = new FakeUserbook(user);
         FakeConsole console = new FakeConsole("1");
 
