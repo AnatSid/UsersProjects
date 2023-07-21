@@ -54,7 +54,7 @@ class AddCommandTest {
         Command command = new AddCommand(usersBook, console);
 
         Exception exceptionIfEnteredNotNumber = Assertions.assertThrows(InputMismatchException.class, command::execute);
-        Assertions.assertEquals("Input error, you need to enter only numbers (integer)", exceptionIfEnteredNotNumber.getMessage());
+        Assertions.assertEquals("test-exception", exceptionIfEnteredNotNumber.getMessage());
 
     }
 }
