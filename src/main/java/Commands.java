@@ -12,7 +12,7 @@ public class Commands {
     public Commands(RealUsersBook realUsersBook, Console console) {
         commands = new HashMap<>();
         commands.put(ADD, new AddCommand(realUsersBook,console));
-        commands.put(GET_ALL_USERS, new GetAllUsersCommand(realUsersBook));
+        commands.put(GET_ALL_USERS, new GetAllUsersCommand(realUsersBook,console));
         commands.put(GET_USER_TO_ID, new GetUserByIdCommand(realUsersBook, console));
         commands.put(REMOVE_BY_ID, new RemoveUserByIdCommand(realUsersBook,console));
         commands.put(ADD_AND_NOTIFY, new AddAndNotifyCommand(realUsersBook, console));
