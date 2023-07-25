@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.util.InputMismatchException;
-
 class AddCommandTest {
 
     @Test
@@ -30,31 +28,27 @@ class AddCommandTest {
     }
 
     @Test
-    void shouldBeThrownExceptionIfUserEnteredStringInsteadOfInteger () {
+    void userWillNotBeAddedIfUserEnteredStringInsteadOfIntegerAndExceptionWasThrown (){
         User user = new User("test", "test", 1, 1);
-
         FakeUserbook usersBook = new FakeUserbook(user);
-        Console console = new Console() {
-            @Override
-            public int nextInt() {
-                throw new InputMismatchException("Input error, you need to enter only numbers (integer)");
-            }
-
-            @Override
-            public void printLn(String message) {
-
-            }
-
-            @Override
-            public String nextLine() {
-                return "test";
-            }
-        };
-
+        FakeConsoleForAddCommandTest console = new FakeConsoleForAddCommandTest("test");
         Command command = new AddCommand(usersBook, console);
 
-        Exception exceptionIfEnteredNotNumber = Assertions.assertThrows(InputMismatchException.class, command::execute);
-        Assertions.assertEquals("test-exception", exceptionIfEnteredNotNumber.getMessage());
+        boolean isConsoleEmpty = console.messages.isEmpty();
+        Assertions.assertTrue(isConsoleEmpty);
+
+        command.execute();
+        Assertions.assertFalse(usersBook.userAdded, "method Add is not called");
+
+        boolean isInfoMessageAboutAddingUserIsPresent = console.messages
+                .stream()
+                .anyMatch(message -> message.startsWith
+                        ("Input error, for age/id you need to enter only numbers (integer)"));
+
+        Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "Test fail. Test-message is empty.");
+
+
+
 
     }
 }
