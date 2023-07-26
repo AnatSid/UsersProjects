@@ -4,6 +4,8 @@ public class AddCommand implements Command {
     private final UserBook usersBook;
     private final Console console;
 
+    private static int idGenerator = 1;
+
     public AddCommand(UserBook usersBook, Console console) {
         this.usersBook = usersBook;
         this.console = console;
@@ -22,11 +24,11 @@ public class AddCommand implements Command {
             console.printLn("Enter age:");
             int age = console.nextInt();
 
-            console.printLn("Enter id");
-            int id = console.nextInt();
+            int id = idGenerator;
 
             User user = new User(name, surName, age, id);
             usersBook.addUser(user);
+            idGenerator++;
 
             console.printLn("New user created: " + user);
 
