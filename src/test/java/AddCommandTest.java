@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 class AddCommandTest {
 
     @Test
-    void shouldPrintInfoOfUserThatHasBeenAddedToUserbook() {
+    void shouldPrintInfoOfNewUserThatHasBeenAddedToUserbook() {
         User user = new User("test", "test", 1, 1);
 
         FakeUserbook usersBook = new FakeUserbook(user);
@@ -28,7 +28,7 @@ class AddCommandTest {
     }
 
     @Test
-    void userWillNotBeAddedIfUserEnteredStringInsteadOfIntegerAndExceptionWasThrown (){
+    void shouldNotAddUserAndPrintErrorMessageWhenInvalidDataIsEntered(){
         User user = new User("test", "test", 1, 1);
         FakeUserbook usersBook = new FakeUserbook(user);
         FakeConsoleForAddCommandTest console = new FakeConsoleForAddCommandTest("test");

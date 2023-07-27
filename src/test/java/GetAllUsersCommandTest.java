@@ -3,12 +3,12 @@ import org.junit.jupiter.api.Test;
 
 class GetAllUsersCommandTest {
 
-
     @Test
-    void execute() {
+    void shouldPrintMessageAboutUsersWhichContainedInUserbook() {
+
         User user = new User("test", "test", 22, 22);
         FakeUserbook userbook = new FakeUserbook(user);
-        FakeConsole console = new FakeConsole("test", 22);
+        FakeConsole console = new FakeConsole("");
         GetAllUsersCommand getAllUsersCommand = new GetAllUsersCommand(userbook, console);
 
         boolean isConsoleEmpty = console.messages.isEmpty();
