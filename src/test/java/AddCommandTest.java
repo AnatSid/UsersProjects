@@ -10,11 +10,11 @@ class AddCommandTest {
     @Test
     void shouldPrintInfoOfNewUserThatHasBeenAddedToUserbook() {
         User user = new User("test", "test", 1, 1);
-
         FakeUserbook usersBook = new FakeUserbook(user);
         FakeConsole console = new FakeConsole("test", 1);
 
-        Command command = new AddCommand(usersBook, console);
+        UserIdGenerator idGenerator = new FakeIdGenerator(25);
+        Command command = new AddCommand(usersBook, console, idGenerator);
 
         boolean isConsoleEmpty = console.messages.isEmpty();
         Assertions.assertTrue(isConsoleEmpty);
@@ -25,7 +25,7 @@ class AddCommandTest {
         boolean isInfoMessageAboutAddingUserIsPresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith
-                        ("New user created: Name = 'test', Surname = 'test', Age = 1', Id = 1"));
+                        ("New user created: Name = 'test', Surname = 'test', Age = 1', Id = 25"));
 
         Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "Console-message is Empty");
         Assertions.assertEquals(user, usersBook.getLastAddedUser());
@@ -37,7 +37,8 @@ class AddCommandTest {
         User user = new User("test", "test", 1, 1);
         FakeUserbook usersBook = new FakeUserbook(user);
         FakeConsoleForAddCommandTest console = new FakeConsoleForAddCommandTest("test");
-        Command command = new AddCommand(usersBook, console);
+        UserIdGenerator idGenerator = new FakeIdGenerator(25);
+        Command command = new AddCommand(usersBook, console, idGenerator);
 
         boolean isConsoleEmpty = console.messages.isEmpty();
         Assertions.assertTrue(isConsoleEmpty);

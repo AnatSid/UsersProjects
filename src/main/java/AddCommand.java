@@ -3,17 +3,16 @@ import java.util.InputMismatchException;
 public class AddCommand implements Command {
     private final UserBook usersBook;
     private final Console console;
+    private final UserIdGenerator idGenerator;
 
-    private static int idGenerator = 1;
-
-    public AddCommand(UserBook usersBook, Console console) {
+    public AddCommand(UserBook usersBook, Console console, UserIdGenerator idGenerator) {
         this.usersBook = usersBook;
         this.console = console;
+        this.idGenerator = idGenerator;
     }
 
     @Override
     public void execute() {
-
         try {
             console.printLn("Enter your name: ");
             String name = console.nextLine();
@@ -24,11 +23,10 @@ public class AddCommand implements Command {
             console.printLn("Enter age:");
             int age = console.nextInt();
 
-            int id = idGenerator;
+            int id = idGenerator.getNextId();
 
             User user = new User(name, surName, age, id);
             usersBook.addUser(user);
-            idGenerator++;
 
             console.printLn("New user created: " + user);
 
