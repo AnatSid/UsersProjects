@@ -10,11 +10,11 @@ class AddCommandTest {
     @Test
     void shouldPrintInfoOfNewUserThatHasBeenAddedToUserbook() {
         User user = new User("test", "test", 1, 1);
-
         FakeUserbook usersBook = new FakeUserbook(user);
-        FakeConsole console = new FakeConsole("test", 1);
+        FakeConsole console = new FakeConsole("testTestTest", 1);
 
-        Command command = new AddCommand(usersBook, console);
+        UserIdGenerator idGenerator = new FakeIdGenerator(25);
+        Command command = new AddCommand(usersBook, console, idGenerator);
 
         boolean isConsoleEmpty = console.messages.isEmpty();
         Assertions.assertTrue(isConsoleEmpty);
@@ -25,7 +25,7 @@ class AddCommandTest {
         boolean isInfoMessageAboutAddingUserIsPresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith
-                        ("New user created: Name = 'test', Surname = 'test', Age = 1', Id = 1"));
+                        ("New user created: Name = 'testTestTest', Surname = 'testTestTest', Age = 1', Id = 25"));
 
         Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "Console-message is Empty");
         Assertions.assertEquals(user, usersBook.getLastAddedUser());
@@ -33,11 +33,13 @@ class AddCommandTest {
     }
 
     @Test
-    void shouldNotAddUserAndPrintErrorMessageWhenInvalidDataIsEntered(){
+    void shouldNotAddUserAndPrintErrorMessageWhenInvalidDataIsEntered() {
         User user = new User("test", "test", 1, 1);
         FakeUserbook usersBook = new FakeUserbook(user);
         FakeConsoleForAddCommandTest console = new FakeConsoleForAddCommandTest("test");
-        Command command = new AddCommand(usersBook, console);
+        UserIdGenerator idGenerator = new FakeIdGenerator(25);
+
+        Command command = new AddCommand(usersBook, console, idGenerator);
 
         boolean isConsoleEmpty = console.messages.isEmpty();
         Assertions.assertTrue(isConsoleEmpty);
@@ -53,10 +55,9 @@ class AddCommandTest {
         Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "Test fail. Test-message is empty.");
 
 
-
-
     }
-    public static class FakeConsoleForAddCommandTest implements Console{
+
+    public static class FakeConsoleForAddCommandTest implements Console {
         public final List<String> messages;
         private final String nextLine;
 
@@ -64,7 +65,6 @@ class AddCommandTest {
             this.nextLine = nextLine;
             this.messages = new ArrayList<>();
         }
-
 
         @Override
         public int nextInt() {
