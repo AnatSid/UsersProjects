@@ -20,7 +20,7 @@ public class FakeConsole implements Console {
 
     @Override
     public int nextInt() {
-        if(nextInt==null){
+        if (nextInt == null) {
             return Integer.parseInt(nextLine);
         }
         return nextInt;

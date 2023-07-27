@@ -9,7 +9,7 @@ public class Main {
 
         while (true) {
             System.out.println(commands);
-            String inputCommand = scanner.nextLine();
+            String inputCommand = console.nextLine();
             commands.executeCommand(inputCommand);
         }
     }

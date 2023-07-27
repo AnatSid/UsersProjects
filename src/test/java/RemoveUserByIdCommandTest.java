@@ -7,7 +7,7 @@ class RemoveUserByIdCommandTest {
     @Test
     void shouldPrintUserWithIdHasBeenDeletedIfUserIdPresentInUsersBook() {
 
-        User user = new User("name", "surname", 20);
+        User user = new User("name", "surname", 20,1);
         FakeUserbook usersBook = new FakeUserbook(user);
 
         FakeConsole console = new FakeConsole("1");
@@ -20,11 +20,11 @@ class RemoveUserByIdCommandTest {
 
         Assertions.assertTrue(usersBook.userRemoved, "method remove is not called");
 
-        boolean isUserNotFoundMessagePresent = console.messages
+        boolean isDeleteMessagePresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith("User with id: 1 -> has been deleted"));
 
-        Assertions.assertTrue(isUserNotFoundMessagePresent, "Message is Empty");
+        Assertions.assertTrue(isDeleteMessagePresent, "Message is Empty");
 
     }
 
