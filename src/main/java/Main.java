@@ -5,7 +5,14 @@ public class Main {
         RealUsersBook realUsersBook = new RealUsersBook();
         Scanner scanner = new Scanner(System.in);
         Console console = new RealConsole(scanner);
-        Commands commands = new Commands(realUsersBook,console);
+        NotificationService notificationService = new RealEmailNotificationService(
+                "ansidtyrksony1995@gmail.com",
+                "icgnrnkfveoqzgpz",
+                "Userbook greeting you",
+                "You have successfully registered in our service",
+                console);
+
+        Commands commands = new Commands(realUsersBook,console,notificationService);
 
         while (true) {
             System.out.println(commands);

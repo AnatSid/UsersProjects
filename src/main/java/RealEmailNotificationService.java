@@ -4,18 +4,23 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
 
-public class EmailNotificationService implements NotificationService {
+public class RealEmailNotificationService implements NotificationService {
 
     private final String fromEmail;
     private final String passwordKey;
     private final String subjectMailMessage;
     private final String emailNotificationText;
 
-    public EmailNotificationService(String fromEmail, String passwordKey, String subjectMailMessage, String emailNotificationText) {
+    private final Console console;
+
+
+    public RealEmailNotificationService(String fromEmail, String passwordKey, String subjectMailMessage,
+                                        String emailNotificationText, Console console) {
         this.fromEmail = fromEmail;
         this.passwordKey = passwordKey;
         this.subjectMailMessage = subjectMailMessage;
         this.emailNotificationText = emailNotificationText;
+        this.console = console;
     }
 
     @Override
@@ -65,10 +70,10 @@ public class EmailNotificationService implements NotificationService {
 
             Transport.send(msg);
 
-            System.out.println("EMail Sent Successfully!!!");
+            console.printLn("EMail Sent Successfully!!!");
 
         } catch (Exception e) {
-            System.out.println("Error");
+            console.printLn("Error");
         }
 
     }
