@@ -3,34 +3,25 @@ public class AddAndNotifyCommand implements Command {
     private final Console console;
     private final UserIdGenerator idGenerator;
     private final NotificationService notificationService;
+    private final NotificationData notificationData;
 
     public AddAndNotifyCommand(UserBook userbook, Console console, UserIdGenerator idGenerator,
-                               NotificationService notificationService) {
+                               NotificationService notificationService, NotificationData notificationData) {
         this.userbook = userbook;
         this.console = console;
         this.idGenerator = idGenerator;
         this.notificationService = notificationService;
+        this.notificationData = notificationData;
     }
 
     @Override
     public void execute() {
-        AddCommand add = new AddCommand(userbook,console, idGenerator);
+        AddCommand add = new AddCommand(userbook, console, idGenerator);
         add.execute();
 
         console.printLn("Please enter the recipient's email to send notification");
         String emailTo = console.nextLine();
-
-        NotificationData notificationData = new NotificationData();
         notificationData.setEmailTo(emailTo);
-        notificationData.setNameService("'UserBook'");
-
-//        NotificationService emailNotification = new EmailNotificationService(
-//                "ansidtyrksony1995@gmail.com",
-//                "icgnrnkfveoqzgpz",
-//                "Userbook greeting you",
-//                "You have successfully registered in our service" + notificationData.getNameService() +
-//                        "Your ID: " + userbook.getLastAddedUser().getId());
-
         notificationService.sendNotification(notificationData);
 
         console.printLn(SEPARATOR);
