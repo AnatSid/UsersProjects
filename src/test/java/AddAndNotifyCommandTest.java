@@ -9,24 +9,52 @@ class AddAndNotifyCommandTest {
         FakeUserbook userbook = new FakeUserbook(user);
         FakeConsole console = new FakeConsole("userEmail", 1);
         FakeIdGenerator idGenerator = new FakeIdGenerator(10);
-
         NotificationData notificationData = new NotificationData();
         FakeEmailNotificationService notificationService = new FakeEmailNotificationService();
         Command command = new AddAndNotifyCommand(userbook, console, idGenerator, notificationService, notificationData);
 
         command.execute();
-        Assertions.assertTrue(notificationService.IsMailSend);
+        Assertions.assertTrue(notificationService.isMailSend);
         Assertions.assertEquals("userEmail", notificationData.getEmailTo());
 
     }
 
+    @Test
+    void shouldPrintErrorMessageIfMailWasNotSent() {
+
+        User user = new User("userName", "userSurname", 1, 10);
+        FakeUserbook userbook = new FakeUserbook(user);
+        FakeConsole console = new FakeConsole("userEmail", 1);
+        FakeIdGenerator idGenerator = new FakeIdGenerator(10);
+        NotificationData notificationData = new NotificationData();
+        NotificationService notificationService = notificationData1 -> {
+            try {
+                throw new RuntimeException();
+            } catch (Exception exception) {
+                console.printLn("Error");
+            }
+        };
+        Command command = new AddAndNotifyCommand(userbook, console, idGenerator, notificationService, notificationData);
+
+        boolean isConsoleEmpty = console.messages.isEmpty();
+        Assertions.assertTrue(isConsoleEmpty);
+
+        command.execute();
+
+        boolean isErrorMessageIsPresent = console.messages
+                .stream()
+                .anyMatch(message -> message.startsWith
+                        ("Error"));
+        Assertions.assertTrue(isErrorMessageIsPresent, "Test fail. Test-message is empty.");
+
+    }
 
     static class FakeEmailNotificationService implements NotificationService {
-        public boolean IsMailSend = false;
+        public boolean isMailSend = false;
 
         @Override
         public void sendNotification(NotificationData notificationData) {
-            IsMailSend = true;
+            isMailSend = true;
         }
     }
 }

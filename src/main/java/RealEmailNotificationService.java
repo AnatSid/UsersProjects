@@ -10,7 +10,8 @@ public class RealEmailNotificationService implements NotificationService {
     private final String subjectMailMessage;
     private final String emailNotificationText;
     private final Console console;
-    public RealEmailNotificationService(String fromEmail, String passwordKey, String subjectMailMessage, String emailNotificationText, Console console) {
+    public RealEmailNotificationService(String fromEmail, String passwordKey, String subjectMailMessage,
+                                        String emailNotificationText, Console console) {
         this.fromEmail = fromEmail;
         this.passwordKey = passwordKey;
         this.subjectMailMessage = subjectMailMessage;
@@ -20,10 +21,10 @@ public class RealEmailNotificationService implements NotificationService {
 
     @Override
     public void sendNotification(NotificationData notificationData) {
-        this.sendEmail(fromEmail, passwordKey, notificationData.getEmailTo(), subjectMailMessage, emailNotificationText);
+        this.sendEmail(notificationData.getEmailTo());
     }
 
-    private void sendEmail(String fromEmail, String passwordKey, String toEmail, String subjectMailMessage, String message) {
+    private void sendEmail(String toEmail) {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
         props.put("mail.smtp.port", "587"); //TLS Port
@@ -46,7 +47,7 @@ public class RealEmailNotificationService implements NotificationService {
             msg.setFrom(new InternetAddress("no_reply@example.com", "NoReply-JD"));
             msg.setReplyTo(InternetAddress.parse("no_reply@example.com", false));
             msg.setSubject(subjectMailMessage, "UTF-8");
-            msg.setText(message, "UTF-8");
+            msg.setText(emailNotificationText, "UTF-8");
             msg.setSentDate(new Date());
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
 
@@ -54,7 +55,7 @@ public class RealEmailNotificationService implements NotificationService {
             console.printLn("Email has been successfully sent to your email: " + toEmail);
 
         } catch (Exception e) {
-            console.printLn("Error");
+            console.printLn("Error. Failed to send email");
         }
     }
 }
