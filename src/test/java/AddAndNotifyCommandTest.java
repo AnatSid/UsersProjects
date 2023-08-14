@@ -28,11 +28,7 @@ class AddAndNotifyCommandTest {
         FakeIdGenerator idGenerator = new FakeIdGenerator(10);
         NotificationData notificationData = new NotificationData();
         NotificationService notificationService = notificationData1 -> {
-            try {
-                throw new RuntimeException();
-            } catch (Exception exception) {
-                console.printLn("Error");
-            }
+            throw new RuntimeException();
         };
         Command command = new AddAndNotifyCommand(userbook, console, idGenerator, notificationService, notificationData);
 
@@ -44,7 +40,7 @@ class AddAndNotifyCommandTest {
         boolean isErrorMessageIsPresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith
-                        ("Error"));
+                        ("Error. Failed to send email"));
         Assertions.assertTrue(isErrorMessageIsPresent, "Test fail. Test-message is empty.");
 
     }

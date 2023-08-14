@@ -18,12 +18,15 @@ public class AddAndNotifyCommand implements Command {
     public void execute() {
         AddCommand add = new AddCommand(userbook, console, idGenerator);
         add.execute();
-
         console.printLn("Please enter the recipient's email to send notification");
         String emailTo = console.nextLine();
         notificationData.setEmailTo(emailTo);
-        notificationService.sendNotification(notificationData);
-
+        try {
+            notificationService.sendNotification(notificationData);
+            console.printLn("Email has been successfully sent to your email: " + emailTo);
+        } catch (RuntimeException exception) {
+            console.printLn("Error. Failed to send email");
+        }
         console.printLn(SEPARATOR);
     }
 

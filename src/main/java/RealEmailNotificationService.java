@@ -9,14 +9,13 @@ public class RealEmailNotificationService implements NotificationService {
     private final String passwordKey;
     private final String subjectMailMessage;
     private final String emailNotificationText;
-    private final Console console;
+
     public RealEmailNotificationService(String fromEmail, String passwordKey, String subjectMailMessage,
-                                        String emailNotificationText, Console console) {
+                                        String emailNotificationText) {
         this.fromEmail = fromEmail;
         this.passwordKey = passwordKey;
         this.subjectMailMessage = subjectMailMessage;
         this.emailNotificationText = emailNotificationText;
-        this.console = console;
     }
 
     @Override
@@ -52,10 +51,9 @@ public class RealEmailNotificationService implements NotificationService {
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
 
             Transport.send(msg);
-            console.printLn("Email has been successfully sent to your email: " + toEmail);
 
         } catch (Exception e) {
-            console.printLn("Error. Failed to send email");
+            throw new RuntimeException();
         }
     }
 }

@@ -10,8 +10,7 @@ public class Main {
                 "ansidtyrksony1995@gmail.com",
                 "icgnrnkfveoqzgpz",
                 "Userbook greeting you",
-                "You have successfully registered in our service",
-                console);
+                "You have successfully registered in our service");
         Commands commands = new Commands(realUsersBook,console,notificationService,notificationData);
 
         while (true) {
