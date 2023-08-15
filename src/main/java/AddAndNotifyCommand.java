@@ -1,35 +1,33 @@
-import java.util.Scanner;
-
 public class AddAndNotifyCommand implements Command {
-    private final UsersBook usersBook;
+    private final UserBook userbook;
+    private final Console console;
+    private final UserIdGenerator idGenerator;
+    private final NotificationService notificationService;
+    private final NotificationData notificationData;
 
-    public AddAndNotifyCommand(UsersBook usersBook) {
-        this.usersBook = usersBook;
+    public AddAndNotifyCommand(UserBook userbook, Console console, UserIdGenerator idGenerator,
+                               NotificationService notificationService, NotificationData notificationData) {
+        this.userbook = userbook;
+        this.console = console;
+        this.idGenerator = idGenerator;
+        this.notificationService = notificationService;
+        this.notificationData = notificationData;
     }
 
     @Override
     public void execute() {
-        AddCommand add = new AddCommand(usersBook);
+        AddCommand add = new AddCommand(userbook, console, idGenerator);
         add.execute();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your email to send a notification");
-        String emailTo = scanner.nextLine();
-
-        NotificationData notificationData = new NotificationData();
+        console.printLn("Please enter the recipient's email to send notification");
+        String emailTo = console.nextLine();
         notificationData.setEmailTo(emailTo);
-        notificationData.setNameService("'UserBook'");
-
-
-        NotificationService emailNotification = new EmailNotificationService(
-                "ansidtyrksony1995@gmail.com",
-                "icgnrnkfveoqzgpz",
-                "Userbook greeting you",
-                "You have successfully registered in our service" + notificationData.getNameService() +
-                        "Your ID: " + usersBook.getLastAddedUser().getId());
-
-        emailNotification.sendNotification(notificationData);
-
-        System.out.println(SEPARATOR);
+        try {
+            notificationService.sendNotification(notificationData);
+            console.printLn("Email has been successfully sent to your email: " + emailTo);
+        } catch (RuntimeException exception) {
+            console.printLn("Error. Failed to send email");
+        }
+        console.printLn(SEPARATOR);
     }
 
     @Override
