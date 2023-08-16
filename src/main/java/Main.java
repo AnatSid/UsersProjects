@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        RealUsersBook realUsersBook = new RealUsersBook();
+        UserBook usersBook = new ProxyUserBook();
         Scanner scanner = new Scanner(System.in);
         Console console = new RealConsole(scanner);
         NotificationData notificationData = new NotificationData();
@@ -11,7 +11,7 @@ public class Main {
                 "icgnrnkfveoqzgpz",
                 "Userbook greeting you",
                 "You have successfully registered in our service");
-        Commands commands = new Commands(realUsersBook,console,notificationService,notificationData);
+        Commands commands = new Commands(usersBook,console,notificationService,notificationData);
 
         while (true) {
             System.out.println(commands);

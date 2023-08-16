@@ -19,12 +19,12 @@ public class GetUserByIdCommand implements Command {
             } else {
                 console.printLn("User with id: " + userId + " not found");
             }
-            console.printLn(SEPARATOR);
 
         }catch (InputMismatchException exception){
             console.printLn("Input error, for age you need to enter only numbers (integer)");
-            console.printLn(SEPARATOR);
         }
+        console.nextLine();
+        console.printLn(SEPARATOR);
     }
 
     @Override

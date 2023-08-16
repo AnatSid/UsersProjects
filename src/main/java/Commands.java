@@ -9,14 +9,14 @@ public class Commands {
     private static final String ADD_AND_NOTIFY = "addAndNotify";
 
 
-    public Commands(RealUsersBook realUsersBook, Console console,NotificationService notificationService,
+    public Commands(UserBook userBook, Console console,NotificationService notificationService,
                     NotificationData notificationData) {
         commands = new HashMap<>();
-        commands.put(ADD, new AddCommand(realUsersBook,console, new RealIdGenerator()));
-        commands.put(GET_ALL_USERS, new GetAllUsersCommand(realUsersBook,console));
-        commands.put(GET_USER_TO_ID, new GetUserByIdCommand(realUsersBook, console));
-        commands.put(REMOVE_BY_ID, new RemoveUserByIdCommand(realUsersBook,console));
-        commands.put(ADD_AND_NOTIFY, new AddAndNotifyCommand(realUsersBook, console, new RealIdGenerator(),
+        commands.put(ADD, new AddCommand(userBook,console, new RealIdGenerator()));
+        commands.put(GET_ALL_USERS, new GetAllUsersCommand(userBook,console));
+        commands.put(GET_USER_TO_ID, new GetUserByIdCommand(userBook, console));
+        commands.put(REMOVE_BY_ID, new RemoveUserByIdCommand(userBook,console));
+        commands.put(ADD_AND_NOTIFY, new AddAndNotifyCommand(userBook, console, new RealIdGenerator(),
               notificationService,notificationData));
     }
 
