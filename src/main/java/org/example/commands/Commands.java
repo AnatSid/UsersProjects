@@ -12,8 +12,6 @@ import java.util.List;
 
 @Component
 public class Commands {
-    @Autowired
-    private List<Command> command;
     private final HashMap<String, Command> commands;
     @Autowired
     public Commands(UserBook userBook, Console console, NotificationService notificationService,

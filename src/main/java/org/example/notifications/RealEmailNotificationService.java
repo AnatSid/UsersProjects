@@ -11,7 +11,6 @@ import java.util.Properties;
 
 @Component
 public class RealEmailNotificationService implements NotificationService {
-    //пришлось убрать конструктор и переменные теперь не final
     @Value("${fromEmail}")
     private String fromEmail;
     @Value("${passwordKey}")
