@@ -1,22 +1,25 @@
+package org.example.notifications;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
 
+@Component
 public class RealEmailNotificationService implements NotificationService {
-    private final String fromEmail;
-    private final String passwordKey;
-    private final String subjectMailMessage;
-    private final String emailNotificationText;
-
-    public RealEmailNotificationService(String fromEmail, String passwordKey, String subjectMailMessage,
-                                        String emailNotificationText) {
-        this.fromEmail = fromEmail;
-        this.passwordKey = passwordKey;
-        this.subjectMailMessage = subjectMailMessage;
-        this.emailNotificationText = emailNotificationText;
-    }
+    //пришлось убрать конструктор и переменные теперь не final
+    @Value("${fromEmail}")
+    private String fromEmail;
+    @Value("${passwordKey}")
+    private String passwordKey;
+    @Value("${subjectMailMessage}")
+    private String subjectMailMessage;
+    @Value("${emailNotificationText}")
+    private String emailNotificationText;
 
     @Override
     public void sendNotification(NotificationData notificationData) {

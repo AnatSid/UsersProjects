@@ -1,3 +1,8 @@
+import org.example.commands.AddAndNotifyCommand;
+import org.example.commands.Command;
+import org.example.notifications.NotificationData;
+import org.example.notifications.NotificationService;
+import org.example.user.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

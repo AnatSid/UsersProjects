@@ -1,3 +1,7 @@
+package org.example.userBook;
+
+import org.example.user.User;
+
 import java.util.List;
 
 public interface UserBook {

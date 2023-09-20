@@ -1,9 +1,18 @@
+package org.example.commands;
+
+import org.example.console.Console;
+import org.example.userBook.UserBook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.InputMismatchException;
 
+@Component
 public class GetUserByIdCommand implements Command {
     private final UserBook usersBook;
     private final Console console;
 
+    @Autowired
     public GetUserByIdCommand(UserBook usersBook, Console console) {
         this.usersBook = usersBook;
         this.console = console;
@@ -15,16 +24,21 @@ public class GetUserByIdCommand implements Command {
         try {
             int userId = console.nextInt();
             if (usersBook.getUserById(userId) != null) {
-                console.printLn("User with id: " + userId + " -> " + usersBook.getUserById(userId));
+                console.printLn("org.example.user.User with id: " + userId + " -> " + usersBook.getUserById(userId));
             } else {
-                console.printLn("User with id: " + userId + " not found");
+                console.printLn("org.example.user.User with id: " + userId + " not found");
             }
 
-        }catch (InputMismatchException exception){
+        } catch (InputMismatchException exception) {
             console.printLn("Input error, for age you need to enter only numbers (integer)");
         }
         console.nextLine();
         console.printLn(SEPARATOR);
+    }
+
+    @Override
+    public String getName() {
+        return "getUserForId";
     }
 
     @Override

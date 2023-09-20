@@ -1,3 +1,8 @@
+package org.example.notifications;
+
+import org.springframework.stereotype.Component;
+
+@Component
 public class NotificationData {
 
     private String emailTo;

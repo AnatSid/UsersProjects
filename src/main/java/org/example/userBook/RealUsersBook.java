@@ -1,4 +1,11 @@
+package org.example.userBook;
+
+import org.example.user.User;
+import org.springframework.stereotype.Component;
+
 import java.util.*;
+
+@Component()
 public class RealUsersBook implements UserBook {
     private final Map<Integer, User> users = new HashMap<>();
 

@@ -1,3 +1,5 @@
+import org.example.commands.GetAllUsersCommand;
+import org.example.user.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

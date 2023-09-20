@@ -1,7 +1,9 @@
+import org.example.user.User;
+import org.example.userBook.UserBook;
+
 import java.util.List;
 
 public class FakeUserbook implements UserBook {
-
     private final User user;
     public boolean userAdded;
     public boolean userRemoved;

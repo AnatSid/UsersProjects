@@ -1,3 +1,7 @@
+import org.example.commands.Command;
+import org.example.commands.GetUserByIdCommand;
+import org.example.user.User;
+import org.example.userBook.UserBook;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +22,7 @@ class GetUserByIdCommandTest {
 
         boolean isUserInfoMessagePresent = console.messages
                 .stream()
-                .anyMatch(message -> message.startsWith("User with id: 1 -> Name = 'name', " +
+                .anyMatch(message -> message.startsWith("org.example.user.User with id: 1 -> Name = 'name', " +
                         "Surname = 'surname', Age = 1', Id = 1"));
 
 
@@ -40,7 +44,7 @@ class GetUserByIdCommandTest {
 
         boolean isUserNotFoundMessagePresent = console.messages
                 .stream()
-                .anyMatch(message -> message.startsWith("User with id: 2 not found"));
+                .anyMatch(message -> message.startsWith("org.example.user.User with id: 2 not found"));
 
         Assertions.assertTrue(isUserNotFoundMessagePresent, "Message is Empty. 'Else' block failed");
 

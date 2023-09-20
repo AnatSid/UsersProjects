@@ -1,3 +1,8 @@
+import org.example.commands.AddCommand;
+import org.example.commands.Command;
+import org.example.console.Console;
+import org.example.user.User;
+import org.example.user.UserIdGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +32,7 @@ class AddCommandTest {
                 .anyMatch(message -> message.startsWith
                         ("New user created: Name = 'testTestTest', Surname = 'testTestTest', Age = 1', Id = 25"));
 
-        Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "Console-message is Empty");
+        Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "org.example.console.Console-message is Empty");
         Assertions.assertEquals(user, usersBook.getLastAddedUser());
 
     }
