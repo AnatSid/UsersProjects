@@ -17,7 +17,7 @@ public class Commands {
     private final HashMap<String, Command> commands;
     @Autowired
     public Commands(UserBook userBook, Console console, NotificationService notificationService,
-                    NotificationData notificationData) {
+                    NotificationData notificationData, List<Command> command) {
 
         commands = new HashMap<>();
         for (Command comm : command) {
