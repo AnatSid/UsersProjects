@@ -25,9 +25,9 @@ public class RemoveUserByIdCommand implements Command {
             int userId = console.nextInt();
             if (usersBook.getUserById(userId) != null) {
                 usersBook.removeById(userId);
-                console.printLn("org.example.user.User with id: " + userId + " -> has been deleted");
+                console.printLn("User with id: " + userId + " -> has been deleted");
             } else {
-                console.printLn("org.example.user.User with id: " + userId + " not found");
+                console.printLn("User with id: " + userId + " not found");
             }
             console.printLn(SEPARATOR);
 

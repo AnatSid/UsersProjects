@@ -24,9 +24,9 @@ public class GetUserByIdCommand implements Command {
         try {
             int userId = console.nextInt();
             if (usersBook.getUserById(userId) != null) {
-                console.printLn("org.example.user.User with id: " + userId + " -> " + usersBook.getUserById(userId));
+                console.printLn("User with id: " + userId + " -> " + usersBook.getUserById(userId));
             } else {
-                console.printLn("org.example.user.User with id: " + userId + " not found");
+                console.printLn("User with id: " + userId + " not found");
             }
 
         } catch (InputMismatchException exception) {

@@ -26,7 +26,7 @@ class RemoveUserByIdCommandTest {
 
         boolean isDeleteMessagePresent = console.messages
                 .stream()
-                .anyMatch(message -> message.startsWith("org.example.user.User with id: 1 -> has been deleted"));
+                .anyMatch(message -> message.startsWith("User with id: 1 -> has been deleted"));
 
         Assertions.assertTrue(isDeleteMessagePresent, "Message is Empty");
 
@@ -47,7 +47,7 @@ class RemoveUserByIdCommandTest {
 
         boolean isUserNotFoundMessagePresent = console.messages
                 .stream()
-                .anyMatch(message -> message.startsWith("org.example.user.User with id: 2 not found"));
+                .anyMatch(message -> message.startsWith("User with id: 2 not found"));
 
         Assertions.assertTrue(isUserNotFoundMessagePresent, "Message is Empty. 'Else' block failed");
     }

@@ -7,22 +7,21 @@ import org.example.userBook.UserBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class Commands {
-    private final HashMap<String, Command> commands;
+    private final Map<String, Command> commands;
+
     @Autowired
     public Commands(UserBook userBook, Console console, NotificationService notificationService,
-                    NotificationData notificationData, List<Command> command) {
+                    NotificationData notificationData, List<Command> commandList) {
 
-        commands = new HashMap<>();
-        for (Command comm : command) {
-            String key = comm.getName();
-            commands.put(key, comm);
-        }
+        commands = commandList.stream().collect(Collectors.toMap(Command::getName, command -> command));
     }
+
     public void executeCommand(String inputCommand) {
         if (commands.containsKey(inputCommand)) {
             commands.get(inputCommand).execute();
@@ -30,6 +29,7 @@ public class Commands {
             System.out.println("Incorrect commands");
         }
     }
+
     @Override
     public String toString() {
         StringBuilder commandInfo = new StringBuilder();
