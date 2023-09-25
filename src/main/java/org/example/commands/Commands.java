@@ -1,8 +1,8 @@
 package org.example.commands;
 
+import org.example.console.Console;
 import org.example.notifications.NotificationData;
 import org.example.notifications.NotificationService;
-import org.example.console.Console;
 import org.example.userBook.UserBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,6 @@ public class Commands {
     @Autowired
     public Commands(UserBook userBook, Console console, NotificationService notificationService,
                     NotificationData notificationData, List<Command> commandList) {
-
         commands = commandList.stream().collect(Collectors.toMap(Command::getName, command -> command));
     }
 

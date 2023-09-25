@@ -32,7 +32,7 @@ class AddCommandTest {
                 .anyMatch(message -> message.startsWith
                         ("New user created: Name = 'testTestTest', Surname = 'testTestTest', Age = 1', Id = 25"));
 
-        Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "org.example.console.Console-message is Empty");
+        Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "Console-message is Empty");
         Assertions.assertEquals(user, usersBook.getLastAddedUser());
 
     }
