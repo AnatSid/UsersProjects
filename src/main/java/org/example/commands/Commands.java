@@ -1,9 +1,6 @@
 package org.example.commands;
 
 import org.example.console.Console;
-import org.example.notifications.NotificationData;
-import org.example.notifications.NotificationService;
-import org.example.userBook.UserBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,18 +11,19 @@ import java.util.stream.Collectors;
 @Component
 public class Commands {
     private final Map<String, Command> commands;
+    private final Console console;
 
     @Autowired
-    public Commands(UserBook userBook, Console console, NotificationService notificationService,
-                    NotificationData notificationData, List<Command> commandList) {
+    public Commands(List<Command> commandList, Console console){
         commands = commandList.stream().collect(Collectors.toMap(Command::getName, command -> command));
+        this.console = console;
     }
 
     public void executeCommand(String inputCommand) {
         if (commands.containsKey(inputCommand)) {
             commands.get(inputCommand).execute();
         } else {
-            System.out.println("Incorrect commands");
+           console.printLn("Incorrect commands");
         }
     }
 

@@ -21,7 +21,7 @@ public class RealUsersBook implements UserBook {
         if (userId != null && users.containsKey(userId)) {
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException ignored) {
 
             }
             return users.get(userId);
