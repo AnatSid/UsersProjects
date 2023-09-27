@@ -1,3 +1,7 @@
+import org.example.commands.Command;
+import org.example.commands.RemoveUserByIdCommand;
+import org.example.user.User;
+import org.example.userBook.UserBook;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +23,6 @@ class RemoveUserByIdCommandTest {
         command.execute();
 
         Assertions.assertTrue(usersBook.userRemoved, "method remove is not called");
-
         boolean isDeleteMessagePresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith("User with id: 1 -> has been deleted"));

@@ -1,3 +1,6 @@
+import org.example.userBook.RealUsersBook;
+import org.example.user.User;
+import org.example.userBook.UserBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +13,7 @@ class UsersBookTest {
 
     UserBook usersBook;
     User  user1 = new User("name1", "surname1", 20,1);
-    User  user2 = new User("name2", "surname2", 22,2);
+    User user2 = new User("name2", "surname2", 22,2);
     User  user3 = new User("name3", "surname3", 24,3);
 
 

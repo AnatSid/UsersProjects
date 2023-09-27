@@ -1,3 +1,8 @@
+import org.example.commands.AddCommand;
+import org.example.commands.Command;
+import org.example.console.Console;
+import org.example.user.User;
+import org.example.user.UserIdGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +14,7 @@ class AddCommandTest {
 
     @Test
     void shouldPrintInfoOfNewUserThatHasBeenAddedToUserbook() {
+
         User user = new User("test", "test", 1, 1);
         FakeUserbook usersBook = new FakeUserbook(user);
         FakeConsole console = new FakeConsole("testTestTest", 1);
@@ -34,6 +40,7 @@ class AddCommandTest {
 
     @Test
     void shouldNotAddUserAndPrintErrorMessageWhenInvalidDataIsEntered() {
+
         User user = new User("test", "test", 1, 1);
         FakeUserbook usersBook = new FakeUserbook(user);
         FakeConsoleForAddCommandTest console = new FakeConsoleForAddCommandTest("test");
@@ -53,7 +60,6 @@ class AddCommandTest {
                         ("Input error, for age/id you need to enter only numbers (integer)"));
 
         Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "Test fail. Test-message is empty.");
-
 
     }
 

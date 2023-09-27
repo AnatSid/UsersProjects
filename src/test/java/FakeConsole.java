@@ -1,3 +1,5 @@
+import org.example.console.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,7 +7,6 @@ public class FakeConsole implements Console {
     public final List<String> messages;
     private final String nextLine;
     private Integer nextInt;
-
 
     public FakeConsole(String nextLine) {
         this.nextLine = nextLine;

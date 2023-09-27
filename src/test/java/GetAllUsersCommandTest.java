@@ -1,3 +1,5 @@
+import org.example.commands.GetAllUsersCommand;
+import org.example.user.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,12 +17,12 @@ class GetAllUsersCommandTest {
         Assertions.assertTrue(isConsoleEmpty);
 
         getAllUsersCommand.execute();
+
         boolean isUserInfoMessagePresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith("Name = 'test', Surname = 'test', Age = 22', Id = 22"));
 
         Assertions.assertTrue(isUserInfoMessagePresent, "Test fail. Test-message is empty.");
-
 
     }
 }

@@ -1,10 +1,18 @@
+package org.example.commands;
+
+import org.example.console.Console;
+import org.example.userBook.UserBook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.InputMismatchException;
 
+@Component
 public class RemoveUserByIdCommand implements Command {
-
     private final UserBook usersBook;
     private final Console console;
 
+    @Autowired
     public RemoveUserByIdCommand(UserBook usersBook, Console console) {
         this.usersBook = usersBook;
         this.console = console;
@@ -21,12 +29,16 @@ public class RemoveUserByIdCommand implements Command {
             } else {
                 console.printLn("User with id: " + userId + " not found");
             }
-            console.printLn(SEPARATOR);
-
         } catch (InputMismatchException exception) {
             console.printLn("Input error, you need to enter only numbers (integer)");
-            console.printLn(SEPARATOR);
         }
+        console.nextLine();
+        console.printLn(SEPARATOR);
+    }
+
+    @Override
+    public String getName() {
+        return "removeById";
     }
 
     @Override

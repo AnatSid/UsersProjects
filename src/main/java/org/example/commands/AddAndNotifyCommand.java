@@ -1,3 +1,14 @@
+package org.example.commands;
+
+import org.example.notifications.NotificationData;
+import org.example.notifications.NotificationService;
+import org.example.console.Console;
+import org.example.user.UserIdGenerator;
+import org.example.userBook.UserBook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class AddAndNotifyCommand implements Command {
     private final UserBook userbook;
     private final Console console;
@@ -5,6 +16,7 @@ public class AddAndNotifyCommand implements Command {
     private final NotificationService notificationService;
     private final NotificationData notificationData;
 
+    @Autowired
     public AddAndNotifyCommand(UserBook userbook, Console console, UserIdGenerator idGenerator,
                                NotificationService notificationService, NotificationData notificationData) {
         this.userbook = userbook;
@@ -28,6 +40,11 @@ public class AddAndNotifyCommand implements Command {
             console.printLn("Error. Failed to send email");
         }
         console.printLn(SEPARATOR);
+    }
+
+    @Override
+    public String getName() {
+        return "addAndNotify";
     }
 
     @Override

@@ -1,4 +1,11 @@
+package org.example.userBook;
+
+import org.example.user.User;
+import org.springframework.stereotype.Component;
+
 import java.util.*;
+
+@Component()
 public class RealUsersBook implements UserBook {
     private final Map<Integer, User> users = new HashMap<>();
 
@@ -12,6 +19,11 @@ public class RealUsersBook implements UserBook {
 
     public User getUserById(Integer userId) {
         if (userId != null && users.containsKey(userId)) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ignored) {
+
+            }
             return users.get(userId);
         }
         return null;

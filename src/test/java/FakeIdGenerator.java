@@ -1,4 +1,6 @@
-public class FakeIdGenerator implements UserIdGenerator{
+import org.example.user.UserIdGenerator;
+
+public class FakeIdGenerator implements UserIdGenerator {
 
     private final int id;
 
