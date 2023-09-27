@@ -9,13 +9,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
-public class Commands {
+public class CommandExecutor {
     private final Map<String, Command> commands;
     private final Console console;
 
     @Autowired
-    public Commands(List<Command> commandList, Console console){
-        commands = commandList.stream().collect(Collectors.toMap(Command::getName, command -> command));
+    public CommandExecutor(List<Command> commands, Console console){
+        this.commands = commands.stream().collect(Collectors.toMap(Command::getName, command -> command));
         this.console = console;
     }
 

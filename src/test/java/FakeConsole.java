@@ -8,7 +8,6 @@ public class FakeConsole implements Console {
     private final String nextLine;
     private Integer nextInt;
 
-
     public FakeConsole(String nextLine) {
         this.nextLine = nextLine;
         this.messages = new ArrayList<>();

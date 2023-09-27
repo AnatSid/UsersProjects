@@ -1,5 +1,5 @@
 import org.example.commands.Command;
-import org.example.commands.Commands;
+import org.example.commands.CommandExecutor;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,35 +7,33 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-class CommandsTest {
+class CommandExecutorTest {
     @Test
     void executionStatusShouldBeTrueAfterCommandIsExecuted() {
+
         FakeCommand command = new FakeCommand();
         FakeConsole console = new FakeConsole("");
 
         List<Command> commandList = new ArrayList<>();
         commandList.add(command);
 
-        Commands commands = new Commands(commandList,console);
-        commands.executeCommand("test");
+        CommandExecutor commandExecutor = new CommandExecutor(commandList, console);
+        commandExecutor.executeCommand("test");
 
-        Assertions.assertTrue(command.executionStatus, "Test fail.Execution status is false. Command failed");
+        Assertions.assertTrue(command.executed, "Test fail.Execution status is false. Command failed");
     }
 
     @Test
-    void shouldWriteMessageIncorrectCommandIfEnteredWrongCommand(){
+    void shouldWriteMessageIncorrectCommandIfEnteredWrongCommand() {
+
         FakeCommand command = new FakeCommand();
         FakeConsole console = new FakeConsole("");
-
-        List<Command> commandList = new ArrayList<>();
-        commandList.add(command);
-
-        Commands commands = new Commands(commandList,console);
+        CommandExecutor commandExecutor = new CommandExecutor(List.of(command), console);
 
         boolean isConsoleEmpty = console.messages.isEmpty();
         Assertions.assertTrue(isConsoleEmpty);
 
-        commands.executeCommand("incorrect");
+        commandExecutor.executeCommand("incorrect");
 
         boolean isInfoMessageIncorrectCommandsIsPresent = console.messages
                 .stream()
@@ -47,11 +45,11 @@ class CommandsTest {
     }
 
     public static class FakeCommand implements Command {
-        boolean executionStatus = false;
+        boolean executed = false;
 
         @Override
         public void execute() {
-            executionStatus = true;
+            executed = true;
         }
 
         @Override

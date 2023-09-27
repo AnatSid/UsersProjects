@@ -11,13 +11,13 @@ import java.util.Properties;
 
 @Component
 public class RealEmailNotificationService implements NotificationService {
-    @Value("${fromEmail}")
+    @Value("${email.sendFrom}")
     private String fromEmail;
-    @Value("${passwordKey}")
+    @Value("${email.passwordKey}")
     private String passwordKey;
-    @Value("${subjectMailMessage}")
+    @Value("${email.subject}")
     private String subjectMailMessage;
-    @Value("${emailNotificationText}")
+    @Value("${email.notificationText}")
     private String emailNotificationText;
 
     @Override

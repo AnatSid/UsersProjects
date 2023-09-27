@@ -23,7 +23,6 @@ class RemoveUserByIdCommandTest {
         command.execute();
 
         Assertions.assertTrue(usersBook.userRemoved, "method remove is not called");
-
         boolean isDeleteMessagePresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith("User with id: 1 -> has been deleted"));

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 @Configuration
 @ComponentScan("org.example")
-@PropertySource("RealEmailNotificationService.properties")
+@PropertySource("application.properties")
 public class SpringConfig {
 
     @Bean

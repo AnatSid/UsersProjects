@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.commands.Commands;
+import org.example.commands.CommandExecutor;
 import org.example.config.SpringConfig;
 import org.example.console.Console;
 
@@ -11,12 +11,12 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
         Console console = context.getBean("realConsole", Console.class);
-        Commands commands = context.getBean("commands", Commands.class);
+        CommandExecutor commandExecutor = context.getBean("commandExecutor", CommandExecutor.class);
 
         while (true) {
-            System.out.println(commands);
+            console.printLn(commandExecutor.toString());
             String inputCommand = console.nextLine();
-            commands.executeCommand(inputCommand);
+            commandExecutor.executeCommand(inputCommand);
         }
     }
 }
