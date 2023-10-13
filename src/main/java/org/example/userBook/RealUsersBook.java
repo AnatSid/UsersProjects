@@ -29,7 +29,7 @@ public class RealUsersBook implements UserBook {
         return null;
     }
 
-    public void removeById(Integer userId) {
+    public void removeUserById(Integer userId) {
         if (userId != null) {
             users.remove(userId);
         }

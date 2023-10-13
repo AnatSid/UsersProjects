@@ -33,8 +33,8 @@ public class ProxyUserBook implements UserBook {
     }
 
     @Override
-    public void removeById(Integer userId) {
-        realUsersBook.removeById(userId);
+    public void removeUserById(Integer userId) {
+        realUsersBook.removeUserById(userId);
     }
 
     @Override

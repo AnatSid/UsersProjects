@@ -48,7 +48,7 @@ class UsersBookTest {
     void testRemoveById() {
         int id = user1.getId();
         usersBook.addUser(user1);
-        usersBook.removeById(id);
+        usersBook.removeUserById(id);
         assertNull(usersBook.getUserById(id));
     }
 
