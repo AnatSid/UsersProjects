@@ -3,6 +3,7 @@ package org.example.commands;
 import org.example.console.Console;
 import org.example.userBook.UserBook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +12,7 @@ public class GetAllUsersCommand implements Command {
     private final Console console;
 
     @Autowired
-    public GetAllUsersCommand(UserBook userBook, Console console) {
+    public GetAllUsersCommand(@Qualifier("userBookToFile") UserBook userBook, Console console) {
         this.userBook = userBook;
         this.console = console;
     }

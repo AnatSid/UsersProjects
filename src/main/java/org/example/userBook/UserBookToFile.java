@@ -1,12 +1,16 @@
 package org.example.userBook;
 
 import org.example.user.User;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
+@Component("userBookToFile")
 public class UserBookToFile implements UserBook {
-    private static final String FILE_PATH = "Test";
+    private static final String FILE_PATH = "TestFile";
     private void saveUserToFile(User user) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             List<User> users = loadUsersFromFile();
@@ -109,7 +113,7 @@ public class UserBookToFile implements UserBook {
 
     @Override
     public User getLastAddedUser() {
-        List<User> users = null;
+        List<User> users;
         try {
             users = loadUsersFromFile();
         } catch (IOException e) {

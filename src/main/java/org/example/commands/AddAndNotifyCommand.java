@@ -6,6 +6,7 @@ import org.example.console.Console;
 import org.example.user.UserIdGenerator;
 import org.example.userBook.UserBook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,7 +18,7 @@ public class AddAndNotifyCommand implements Command {
     private final NotificationData notificationData;
 
     @Autowired
-    public AddAndNotifyCommand(UserBook userbook, Console console, UserIdGenerator idGenerator,
+    public AddAndNotifyCommand(@Qualifier("userBookToFile") UserBook userbook, Console console, UserIdGenerator idGenerator,
                                NotificationService notificationService, NotificationData notificationData) {
         this.userbook = userbook;
         this.console = console;

@@ -3,6 +3,7 @@ package org.example.commands;
 import org.example.console.Console;
 import org.example.userBook.UserBook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
@@ -13,7 +14,7 @@ public class RemoveUserByIdCommand implements Command {
     private final Console console;
 
     @Autowired
-    public RemoveUserByIdCommand(UserBook usersBook, Console console) {
+    public RemoveUserByIdCommand(@Qualifier("userBookToFile") UserBook usersBook, Console console) {
         this.usersBook = usersBook;
         this.console = console;
     }
@@ -38,11 +39,11 @@ public class RemoveUserByIdCommand implements Command {
 
     @Override
     public String getName() {
-        return "removeById";
+        return "removeUserById";
     }
 
     @Override
     public String toString() {
-        return "If you want to delete a user by id, write the command => 'removeById'";
+        return "If you want to delete a user by id, write the command => 'removeUserById'";
     }
 }

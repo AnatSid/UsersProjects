@@ -13,16 +13,14 @@ public class User {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "Name = '" + name + '\'' +
-                ", Surname = '" + surName + '\'' +
-                ", Age = " + age + '\'' +
-                ", Id = " + id;
-    }
-
     public Integer getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return name + "|" + surName + "|" + age + "|" + id;
+    }
+
 }
 
