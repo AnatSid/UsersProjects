@@ -1,6 +1,7 @@
 package org.example.userBook;
 
 import org.example.user.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -10,20 +11,23 @@ import java.util.List;
 
 @Component("userBookToFile")
 public class UserBookToFile implements UserBook {
-    private static final String FILE_PATH = "TestFile";
+    private final String filePath;
+
+    public UserBookToFile(@Value("${file.path}") String filePath) {
+        this.filePath = filePath;
+    }
+
+    //    "UsersRecordsFile"
     private void saveUserToFile(User user) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            List<User> users = loadUsersFromFile();
-            if (!doesUserExist(user.getId(), users)) {
-                writer.write(user.toString());
-                writer.newLine();
-            }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write(user.toString());
+            writer.newLine();
         }
     }
 
     private List<User> loadUsersFromFile() throws IOException {
         List<User> users = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 User user = parseUserFromString(line);
@@ -35,7 +39,7 @@ public class UserBookToFile implements UserBook {
 
     private void deleteUserFromFile(Integer userId) throws IOException {
         List<String> lines = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 User user = parseUserFromString(line);
@@ -44,7 +48,7 @@ public class UserBookToFile implements UserBook {
                 }
             }
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (String line : lines) {
                 writer.write(line);
                 writer.newLine();
@@ -53,7 +57,7 @@ public class UserBookToFile implements UserBook {
     }
 
     public User getUserByIdFromFile(int userId) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 User user = parseUserFromString(line);
@@ -86,7 +90,10 @@ public class UserBookToFile implements UserBook {
     @Override
     public void addUser(User user) {
         try {
-            saveUserToFile(user);
+            List<User> users = loadUsersFromFile();
+            if (!doesUserExist(user.getId(), users)) {
+                saveUserToFile(user);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -103,7 +110,7 @@ public class UserBookToFile implements UserBook {
 
 
     @Override
-    public User getUserById(Integer userId)  {
+    public User getUserById(Integer userId) {
         try {
             return getUserByIdFromFile(userId);
         } catch (IOException e) {
