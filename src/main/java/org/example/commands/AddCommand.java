@@ -5,7 +5,6 @@ import org.example.user.User;
 import org.example.userBook.UserBook;
 import org.example.user.UserIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
@@ -17,7 +16,7 @@ public class AddCommand implements Command {
     private final UserIdGenerator idGenerator;
 
     @Autowired
-    public AddCommand(@Qualifier("userBookToFile") UserBook usersBook, Console console, UserIdGenerator idGenerator) {
+    public AddCommand(UserBook usersBook, Console console, UserIdGenerator idGenerator) {
         this.usersBook = usersBook;
         this.console = console;
         this.idGenerator = idGenerator;

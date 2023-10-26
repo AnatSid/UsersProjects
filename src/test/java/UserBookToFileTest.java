@@ -31,10 +31,8 @@ class UserBookToFileTest {
 
     @Test
     void testFindAll() {
-        userBook.addUser(new User("name1", "surname1", 30, 1));
-        userBook.addUser(new User("name2", "surname2", 20, 2));
-
-        List<User> users = userBook.findAll();
+        UserBook userBook1 = new UserBookToFile("FileForTestUserbookToFile");
+        List<User> users = userBook1.findAll();
 
         assertEquals(2, users.size());
         assertEquals("name1", users.get(0).getName());
@@ -48,7 +46,7 @@ class UserBookToFileTest {
         List<User> users = userBook.findAll();
 
         Assertions.assertEquals(1, users.size());
-        assertEquals(user.getName(), users.get(0).getName());
+        assertEquals(user, users.get(0));
     }
 
     @Test
@@ -60,7 +58,7 @@ class UserBookToFileTest {
         userBook.addUser(user2);
 
         User lastAddedUser = userBook.getLastAddedUser();
-        Assertions.assertEquals(user2.getName(), lastAddedUser.getName());
+        Assertions.assertEquals(user2, lastAddedUser);
     }
 
     @Test
@@ -74,8 +72,8 @@ class UserBookToFileTest {
         User retrievedUser1 = userBook.getUserById(10);
         User retrievedUser2 = userBook.getUserById(222);
 
-        assertEquals(user1.getName(), retrievedUser1.getName());
-        assertEquals(user2.getName(), retrievedUser2.getName());
+        assertEquals(user1, retrievedUser1);
+        assertEquals(user2, retrievedUser2);
     }
 
     @Test

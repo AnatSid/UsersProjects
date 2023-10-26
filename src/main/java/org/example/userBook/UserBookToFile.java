@@ -2,6 +2,7 @@ package org.example.userBook;
 
 import org.example.user.User;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -10,6 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Component("userBookToFile")
+@Primary
 public class UserBookToFile implements UserBook {
     private final String filePath;
 
@@ -78,20 +80,23 @@ public class UserBookToFile implements UserBook {
         return new User(name, surName, age, id);
     }
 
-    private boolean doesUserExist(int userId, List<User> users) {
-        for (User existingUser : users) {
-            if (existingUser.getId().equals(userId)) {
-                return true;
+    private boolean doesUserNotExist(int userId) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                User user = parseUserFromString(line);
+                if (user.getId().equals(userId)) {
+                    return false;
+                }
             }
         }
-        return false;
+        return true;
     }
 
     @Override
     public void addUser(User user) {
         try {
-            List<User> users = loadUsersFromFile();
-            if (!doesUserExist(user.getId(), users)) {
+            if (doesUserNotExist(user.getId())) {
                 saveUserToFile(user);
             }
         } catch (IOException e) {

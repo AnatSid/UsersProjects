@@ -20,7 +20,7 @@ class GetAllUsersCommandTest {
 
         boolean isUserInfoMessagePresent = console.messages
                 .stream()
-                .anyMatch(message -> message.startsWith("Name = 'test', Surname = 'test', Age = 22', Id = 22"));
+                .anyMatch(message -> message.startsWith("test|test|22|22"));
 
         Assertions.assertTrue(isUserInfoMessagePresent, "Test fail. Test-message is empty.");
 

@@ -3,7 +3,6 @@ package org.example.commands;
 import org.example.console.Console;
 import org.example.userBook.UserBook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
@@ -14,7 +13,7 @@ public class GetUserByIdCommand implements Command {
     private final Console console;
 
     @Autowired
-    public GetUserByIdCommand(@Qualifier("userBookToFile") UserBook usersBook, Console console) {
+    public GetUserByIdCommand(UserBook usersBook, Console console) {
         this.usersBook = usersBook;
         this.console = console;
     }

@@ -1,5 +1,7 @@
 package org.example.user;
 
+import java.util.Objects;
+
 public class User {
     private final Integer id;
     private final String name;
@@ -11,6 +13,18 @@ public class User {
         this.name = name;
         this.surName = surName;
         this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(surName, user.surName) && Objects.equals(age, user.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surName, age);
     }
 
     public String getName() {
