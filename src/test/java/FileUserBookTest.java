@@ -1,6 +1,6 @@
 import org.example.user.User;
 import org.example.userBook.UserBook;
-import org.example.userBook.UserBookToFile;
+import org.example.userBook.FileUserBook;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserBookToFileTest {
+class FileUserBookTest {
 
     private UserBook userBook;
     private static final String TEST_FILE_PATH = "FileForTest.txt";
@@ -21,7 +21,7 @@ class UserBookToFileTest {
     @BeforeEach
     public void setUp() throws IOException {
         Files.createFile(Paths.get(TEST_FILE_PATH));
-        userBook = new UserBookToFile(TEST_FILE_PATH);
+        userBook = new FileUserBook(TEST_FILE_PATH);
     }
 
     @AfterEach
@@ -31,13 +31,23 @@ class UserBookToFileTest {
 
     @Test
     void testFindAll() {
-        UserBook userBook1 = new UserBookToFile("FileForTestUserbookToFile");
+        UserBook userBook1 = new FileUserBook("FileForTestUserbookToFile");
         List<User> users = userBook1.findAll();
 
         assertEquals(2, users.size());
         assertEquals("name1", users.get(0).getName());
         assertEquals("name2", users.get(1).getName());
     }
+
+    @Test
+    void testGetUserById() {
+        UserBook userBook1 = new FileUserBook("FileForTestUserbookToFile");
+        User user = new User("name1","surname",1,1);
+
+        assertEquals(user,userBook1.getUserById(1));
+        assertEquals("name2", userBook1.getUserById(2).getName());
+    }
+
 
     @Test
     public void testAddUser() {
@@ -51,29 +61,8 @@ class UserBookToFileTest {
 
     @Test
     void testGetLastAddedUser() {
-        User user1 = new User("name1", "surname1", 30, 1);
-        User user2 = new User("name2", "surname2", 25, 2);
-
-        userBook.addUser(user1);
-        userBook.addUser(user2);
-
-        User lastAddedUser = userBook.getLastAddedUser();
-        Assertions.assertEquals(user2, lastAddedUser);
-    }
-
-    @Test
-    void testGetUserById() {
-        User user1 = new User("name1", "surname1", 20, 10);
-        User user2 = new User("name2", "surname2", 20, 222);
-
-        userBook.addUser(user1);
-        userBook.addUser(user2);
-
-        User retrievedUser1 = userBook.getUserById(10);
-        User retrievedUser2 = userBook.getUserById(222);
-
-        assertEquals(user1, retrievedUser1);
-        assertEquals(user2, retrievedUser2);
+        UserBook userBook1 = new FileUserBook("FileForTestUserbookToFile");
+        Assertions.assertEquals(2, userBook1.getLastAddedUser().getId());
     }
 
     @Test

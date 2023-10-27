@@ -14,8 +14,12 @@ public class FileIdGenerator implements UserIdGenerator {
     private final String filePath;
 
     public FileIdGenerator(@Value("${file.path.id}") String filePath) {
-        this.id = loadIdFromFile(filePath);
         this.filePath = filePath;
+        try {
+            this.id = loadIdFromFile(filePath);
+        } catch (Exception exception) {
+            System.out.println("File path not found");
+        }
     }
 
     private void saveIdToFile(int id) throws IOException {

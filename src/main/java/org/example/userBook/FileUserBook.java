@@ -12,10 +12,10 @@ import java.util.List;
 
 @Component("userBookToFile")
 @Primary
-public class UserBookToFile implements UserBook {
+public class FileUserBook implements UserBook {
     private final String filePath;
 
-    public UserBookToFile(@Value("${file.path}") String filePath) {
+    public FileUserBook(@Value("${file.path}") String filePath) {
         this.filePath = filePath;
     }
 
@@ -80,23 +80,23 @@ public class UserBookToFile implements UserBook {
         return new User(name, surName, age, id);
     }
 
-    private boolean doesUserNotExist(int userId) throws IOException {
+    private boolean isUserExist(int userId) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 User user = parseUserFromString(line);
                 if (user.getId().equals(userId)) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     @Override
     public void addUser(User user) {
         try {
-            if (doesUserNotExist(user.getId())) {
+            if (!isUserExist(user.getId())) {
                 saveUserToFile(user);
             }
         } catch (IOException e) {
