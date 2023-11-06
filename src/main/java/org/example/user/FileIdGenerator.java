@@ -15,11 +15,7 @@ public class FileIdGenerator implements UserIdGenerator {
 
     public FileIdGenerator(@Value("${file.path.id}") String filePath) {
         this.filePath = filePath;
-        try {
-            this.id = loadIdFromFile(filePath);
-        } catch (Exception exception) {
-            System.out.println("File path not found");
-        }
+        this.id = loadIdFromFile(filePath);
     }
 
     private void saveIdToFile(int id) throws IOException {
@@ -35,7 +31,7 @@ public class FileIdGenerator implements UserIdGenerator {
                 id = Integer.parseInt(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return id;
     }
