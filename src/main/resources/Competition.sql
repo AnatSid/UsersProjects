@@ -1,10 +1,24 @@
+CREATE TABLE City
+(
+	id SERIAL PRIMARY KEY,
+	name_city VARCHAR(255) NOT NULL
+)
+INSERT INTO City
+VALUES
+('Gomel'),
+('Minsk'),
+('Mogilev'),
+('Vitebsk'),
+('Grodno'),
+('Brest');
+-----------------------------------------------------------
 CREATE TABLE Sportsmans
 (
 	first_name VARCHAR(255) NOT NULL,
 	surname VARCHAR(255) NOT NULL,
 	date_birth INTEGER NOT NULL,
 	city_id INTEGER,
-	FOREIGN KEY (city_id) REFERENCES City(id)
+	FOREIGN KEY (city_id) REFERENCES City (id)
 )
 
 INSERT INTO Sportsmans
