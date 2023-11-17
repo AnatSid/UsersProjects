@@ -14,6 +14,7 @@ VALUES
 -----------------------------------------------------------
 CREATE TABLE Sportsmans
 (
+    id_sportsman SERIAL PRIMARY KEY,
 	first_name VARCHAR(255) NOT NULL,
 	surname VARCHAR(255) NOT NULL,
 	date_birth INTEGER NOT NULL,
@@ -21,7 +22,7 @@ CREATE TABLE Sportsmans
 	FOREIGN KEY (city_id) REFERENCES City (id)
 )
 
-INSERT INTO Sportsmans
+INSERT INTO Sportsmans (first_name,surname,date_birth,city_id)
 VALUES
 ('Ivan','Ivanov', 1995, 1),
 ('Semen','Semenov', 1989, 2),
@@ -33,9 +34,9 @@ VALUES
 
 SELECT s.first_name, s.surname, s.date_birth, c.name_city AS city_name
 FROM Sportsmans s
-JOIN City c ON s.city_id = c.id_city;
-
+JOIN City c ON s.city_id = c.id;
 -----------------------------------------------------------------------------------
+
 CREATE TABLE Distance
 (
 	id_distance SERIAL PRIMARY KEY,
