@@ -32,9 +32,6 @@ VALUES
 ('Makar','Makarenko', 1995, 5),
 ('Vlad','Topalov', 1990, 2);
 
-SELECT s.first_name, s.surname, s.date_birth, c.name_city AS city_name
-FROM Sportsmans s
-JOIN City c ON s.city_id = c.id;
 -----------------------------------------------------------------------------------
 
 CREATE TABLE Distance
@@ -73,8 +70,29 @@ VALUES
 ('Sprint Showdown', '2019-06-25', 4),
 ('Winter Swim Cup', '2022-01-25', 6);
 
-SELECT comp.name_competitions,comp.date_competitions, c.name_city AS city_name
-FROM Competitions comp
-JOIN City c ON comp.city_id = c.id
 ----------------------------------------------------------------------------------------
+
+CREATE TABLE Protokol
+(
+	id_distance INTEGER,
+	id_sportsman INTEGER,
+	result_time INTERVAL,
+	id_competition INTEGER,
+	points INTEGER,
+	FOREIGN KEY (id_distance) REFERENCES Distance(id_distance),
+	FOREIGN KEY (id_sportsman) REFERENCES Sportsmans(id_sportsman),
+	FOREIGN KEY (id_competition) REFERENCES Competitions(id_competitions)
+)
+
+INSERT INTO Protokol (id_distance,id_sportsman,result_time,id_competition,points)
+VALUES
+(4,1,'00:00:22.50',1,950),
+(4,2,'00:00:24.50',1,810),
+(4,3,'00:00:25.50',1,720),
+(4,4,'00:00:22.55',1,945),
+(4,5,'00:00:23.23',1,880),
+(4,6,'00:00:23.65',1,870),
+(4,7,'00:00:22.90',1,920);
+
+
 
