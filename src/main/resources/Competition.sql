@@ -1,9 +1,9 @@
 CREATE TABLE City
 (
 	id SERIAL PRIMARY KEY,
-	name_city VARCHAR(255) NOT NULL
+	name VARCHAR(255) NOT NULL
 )
-INSERT INTO City
+INSERT INTO City (name)
 VALUES
 ('Gomel'),
 ('Minsk'),
@@ -12,17 +12,17 @@ VALUES
 ('Grodno'),
 ('Brest');
 -----------------------------------------------------------
-CREATE TABLE Sportsmans
+CREATE TABLE Athletes
 (
-    id_sportsman SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
 	first_name VARCHAR(255) NOT NULL,
 	surname VARCHAR(255) NOT NULL,
 	date_birth INTEGER NOT NULL,
 	city_id INTEGER,
-	FOREIGN KEY (city_id) REFERENCES City (id)
+	FOREIGN KEY (city_id) REFERENCES City(id)
 )
 
-INSERT INTO Sportsmans (first_name,surname,date_birth,city_id)
+INSERT INTO Athletes (first_name,surname,date_birth,city_id)
 VALUES
 ('Ivan','Ivanov', 1995, 1),
 ('Semen','Semenov', 1989, 2),
@@ -34,14 +34,14 @@ VALUES
 
 -----------------------------------------------------------------------------------
 
-CREATE TABLE Distance
+CREATE TABLE Race
 (
-	id_distance SERIAL PRIMARY KEY,
-	name_style VARCHAR(255) NOT NULL,
-	meters INTEGER NOT NULL
+	id SERIAL PRIMARY KEY,
+	style VARCHAR(255) NOT NULL,
+	distance INTEGER NOT NULL
 )
 
-INSERT INTO Distance (name_style,meters)
+INSERT INTO Race (style,distance)
 VALUES
 ('Butterfly',50),
 ('Butterfly',100),
@@ -54,14 +54,14 @@ VALUES
 
 CREATE TABLE Competitions
 (
-    id_competitions SERIAL PRIMARY KEY,
-    name_competitions VARCHAR(255) NOT NULL,
-    date_competitions DATE NOT NULL,
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
     city_id INTEGER NOT NULL,
 	FOREIGN KEY (city_id) REFERENCES City(id)
 );
 
-INSERT INTO Competitions (name_competitions, date_competitions, city_id)
+INSERT INTO Competitions (name, date, city_id)
 VALUES
 ('Swimming Championship', '2023-08-15', 2),
 ('Aquatic Games', '2022-09-20', 1),
@@ -72,19 +72,19 @@ VALUES
 
 ----------------------------------------------------------------------------------------
 
-CREATE TABLE Protokol
+CREATE TABLE RaceResult
 (
-	id_distance INTEGER,
-	id_sportsman INTEGER,
+	id_race INTEGER,
+	id_athlete INTEGER,
 	result_time INTERVAL,
 	id_competition INTEGER,
 	points INTEGER,
-	FOREIGN KEY (id_distance) REFERENCES Distance(id_distance),
-	FOREIGN KEY (id_sportsman) REFERENCES Sportsmans(id_sportsman),
-	FOREIGN KEY (id_competition) REFERENCES Competitions(id_competitions)
+	FOREIGN KEY (id_race) REFERENCES Race(id),
+	FOREIGN KEY (id_athlete) REFERENCES Athletes(id),
+	FOREIGN KEY (id_competition) REFERENCES Competitions(id)
 )
 
-INSERT INTO Protokol (id_distance,id_sportsman,result_time,id_competition,points)
+INSERT INTO RaceResult (id_race,id_athlete,result_time,id_competition,points)
 VALUES
 (4,1,'00:00:22.50',1,950),
 (4,2,'00:00:24.50',1,810),
