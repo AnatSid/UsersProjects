@@ -1,52 +1,53 @@
 ---- Вывод итоговой таблицы (общий протокол) со всеми данными
 SELECT
-    d.meters || ' ' || d.name_style AS distance,
-    s.surname,
-    s.first_name,
-    s.date_birth,
-    c.name_city ,
-    p.result_time,
-    comp.name_competitions,
-    p.points
+    r.distance || ' ' || r.style AS distance,
+    ath.surname,
+    ath.first_name,
+    ath.date_birth,
+    c.name,
+    rr.result_time,
+    comp.name,
+    rr.points
+
 FROM
-    Protokol p
+	RaceResult rr
 JOIN
-    Distance d ON p.id_distance = d.id_distance
+    Race r ON rr.id_race = r.id
 JOIN
-    Sportsmans s ON p.id_sportsman = s.id_sportsman
+    Athletes ath ON rr.id_athlete = ath.id
 JOIN
-    Competitions comp ON p.id_competition = comp.id_competitions
+    Competitions comp ON rr.id_race = comp.id
 JOIN
-    City c ON s.city_id = c.id
+    City c ON ath.city_id = c.id
 ORDER BY result_time
 
 
 --- Топ 3 спортсмена, которые набрали больше всего очков на данных соревнованиях
-SELECT s.surname,s.first_name, p.points
-FROM Protokol p
-JOIN Sportsmans s ON p.id_sportsman = s.id_sportsman
+SELECT ath.surname,ath.first_name, rr.points
+FROM RaceResult rr
+JOIN Athletes ath ON rr.id_athlete = ath.id
 ORDER BY points DESC
 LIMIT 3;
 
 ----Cписок участников на соревнованиях по дистанциям
-SELECT s.surname,s.first_name, d.meters || ' ' || d.name_style AS distance
-FROM Protokol p
-JOIN Sportsmans s ON p.id_sportsman = s.id_sportsman
-JOIN Distance d ON p.id_distance = d.id_distance
+SELECT ath.surname,ath.first_name, r.distance || ' ' || r.style AS distance
+FROM RaceResult rr
+JOIN Athletes ath ON rr.id_athlete = ath.id
+JOIN Race r ON rr.id_race = r.id
 
 ------список результатов ( ФИО + дистанция + результат)
-SELECT s.surname,s.first_name, d.meters || ' ' || d.name_style AS distance,
-p.result_time
-FROM Protokol p
-JOIN Sportsmans s ON p.id_sportsman = s.id_sportsman
-JOIN Distance d ON p.id_distance = d.id_distance
+SELECT ath.surname,ath.first_name, r.distance || ' ' || r.style AS distance,
+rr.result_time
+FROM RaceResult rr
+JOIN Athletes ath ON rr.id_athlete = ath.id
+JOIN Race r ON rr.id_race = r.id
 ORDER BY result_time
 
 ---------топ 3 города, которые набрали больше всего очков на данных соревнованиях
-SELECT c.name_city AS city, SUM(p.points) AS total_points
-FROM Protokol p
-JOIN Sportsmans s ON p.id_sportsman = s.id_sportsman
-JOIN City c ON s.city_id = c.id
+SELECT c.name AS city, SUM(rr.points) AS total_points
+FROM RaceResult rr
+JOIN Athletes ath ON rr.id_athlete = ath.id
+JOIN City c ON ath.city_id = c.id
 GROUP BY city
 ORDER BY total_points DESC
 LIMIT 3
