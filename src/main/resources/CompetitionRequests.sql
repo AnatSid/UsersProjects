@@ -10,7 +10,7 @@ SELECT
     rr.points
 
 FROM
-	RaceResult rr
+	Race_result rr
 JOIN
     Race r ON rr.id_race = r.id
 JOIN
@@ -29,7 +29,7 @@ SELECT
     a.date_birth,
     SUM(rr.points) AS total_points
 FROM
-    RaceResult rr
+    Race_result rr
 JOIN
     Athletes a ON rr.id_athlete = a.id
 WHERE
@@ -42,7 +42,7 @@ LIMIT 3;
 
 ----Cписок участников на конкретных соревнованиях, и на конкретной дистанции
 SELECT ath.surname, ath.first_name, r.style,r.distance, comp.name AS Competition
-FROM RaceResult rr
+FROM Race_result rr
 JOIN Athletes ath ON rr.id_athlete = ath.id
 JOIN Race r ON rr.id_race = r.id
 JOIN Competitions comp ON rr.id_competition = comp.id
@@ -58,7 +58,7 @@ r.distance,
 rr.result_time,
 comp.name AS Competition
 FROM
-RaceResult rr
+Race_result rr
 JOIN
 Athletes ath ON rr.id_athlete = ath.id
 JOIN
@@ -77,7 +77,7 @@ SELECT
     c.name AS city,
     SUM(rr.points) AS total_points
 FROM
-    RaceResult rr
+    Race_result rr
 JOIN
     Athletes a ON a.id = rr.id_athlete
 JOIN

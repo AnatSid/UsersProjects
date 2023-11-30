@@ -72,7 +72,7 @@ VALUES
 
 ----------------------------------------------------------------------------------------
 
-CREATE TABLE RaceResult
+CREATE TABLE Race_result
 (
 	id_race INTEGER,
 	id_athlete INTEGER,
@@ -84,7 +84,7 @@ CREATE TABLE RaceResult
 	FOREIGN KEY (id_competition) REFERENCES Competitions(id)
 )
 
-INSERT INTO RaceResult (id_race,id_athlete,result_time,id_competition,points)
+INSERT INTO Race_result (id_race,id_athlete,result_time,id_competition,points)
 VALUES
 (4,1,'00:00:22.50',1,950),
 (4,2,'00:00:24.50',1,810),
@@ -94,7 +94,7 @@ VALUES
 (4,6,'00:00:23.65',1,870),
 (4,7,'00:00:22.90',1,920);
 
-INSERT INTO RaceResult (id_race,id_athlete,result_time,id_competition,points)
+INSERT INTO Race_result (id_race,id_athlete,result_time,id_competition,points)
 VALUES
 (1,1,'00:00:23.50',1,850),
 (1,2,'00:00:25.50',1,710),
@@ -115,7 +115,7 @@ VALUES
 (5,7,'00:01:23.90',1,720);
 
 -- (другие соревнований, id_competition = 2)
-INSERT INTO RaceResult (id_race,id_athlete,result_time,id_competition,points)
+INSERT INTO Race_result (id_race,id_athlete,result_time,id_competition,points)
 VALUES
 (4,1,'00:00:22.55',2,960),
 (4,2,'00:00:24.56',2,820),
@@ -125,7 +125,7 @@ VALUES
 (4,6,'00:00:23.87',2,880),
 (4,7,'00:00:22.95',2,930);
 
-INSERT INTO RaceResult (id_race,id_athlete,result_time,id_competition,points)
+INSERT INTO Race_result (id_race,id_athlete,result_time,id_competition,points)
 VALUES
 (1,1,'00:00:22.55',2,960),
 (1,2,'00:00:24.56',2,820),
