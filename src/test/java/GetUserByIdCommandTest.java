@@ -22,8 +22,7 @@ class GetUserByIdCommandTest {
 
         boolean isUserInfoMessagePresent = console.messages
                 .stream()
-                .anyMatch(message -> message.startsWith("User with id: 1 -> Name = 'name', " +
-                        "Surname = 'surname', Age = 1', Id = 1"));
+                .anyMatch(message -> message.startsWith("User with id: 1 -> name|surname|1|1"));
 
         Assertions.assertTrue(isUserInfoMessagePresent, "Test fail. Test-message is empty.");
 

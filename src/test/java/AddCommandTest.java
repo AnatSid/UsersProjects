@@ -31,7 +31,7 @@ class AddCommandTest {
         boolean isInfoMessageAboutAddingUserIsPresent = console.messages
                 .stream()
                 .anyMatch(message -> message.startsWith
-                        ("New user created: Name = 'testTestTest', Surname = 'testTestTest', Age = 1', Id = 25"));
+                        ("New user created: testTestTest|testTestTest|1|25"));
 
         Assertions.assertTrue(isInfoMessageAboutAddingUserIsPresent, "Console-message is Empty");
         Assertions.assertEquals(user, usersBook.getLastAddedUser());

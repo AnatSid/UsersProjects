@@ -24,7 +24,7 @@ public class FakeUserbook implements UserBook {
         return user;
     }
 
-    public void removeById(Integer userId) {
+    public void removeUserById(Integer userId) {
         userRemoved = true;
     }
 

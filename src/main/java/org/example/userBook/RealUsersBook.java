@@ -19,17 +19,12 @@ public class RealUsersBook implements UserBook {
 
     public User getUserById(Integer userId) {
         if (userId != null && users.containsKey(userId)) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ignored) {
-
-            }
             return users.get(userId);
         }
         return null;
     }
 
-    public void removeById(Integer userId) {
+    public void removeUserById(Integer userId) {
         if (userId != null) {
             users.remove(userId);
         }
